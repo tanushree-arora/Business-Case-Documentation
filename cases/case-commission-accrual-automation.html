@@ -3,491 +3,491 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Business Case — Commission Accrual Automation (Solution 1)</title>
+<title>Business Case, Commission Accrual Automation (Solution 1)</title>
 <style>
-  :root{
-    /* Hach / Veralto brand palette — approximate defaults; replace with exact brand hex if available */
-    --blue:#00539B;      --navy:#003C71;     --teal:#00A9CE;
-    --ink:#1F2933;       --slate:#52606D;    --hair:#E4E7EB;
-    --page:#FFFFFF;      --tint:#F5F8FB;
-    --pos:#1F8A54;       --caution:#C77700;  --risk:#C0392B;
-  }
-  *{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
-  body{
-    margin:0; background:#eef2f6; color:var(--ink);
-    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5; font-size:15px;
-  }
-  .doc{max-width:920px; margin:24px auto; background:var(--page);
-       box-shadow:0 1px 6px rgba(0,0,0,.08);}
-  /* Cover */
-  .cover{background:linear-gradient(120deg,var(--navy),var(--blue));
-         color:#fff; padding:34px 40px 26px;}
-  .cover .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-         color:#bfe0f0; margin:0 0 6px;}
-  .cover h1{margin:0; font-size:29px; line-height:1.2; font-weight:700;}
-  .cover .sub{margin:8px 0 0; font-size:15px; color:#dcecf6; max-width:640px;}
-  .accentbar{height:5px; background:var(--teal);}
-  .meta{display:flex; flex-wrap:wrap; gap:2px 0; padding:14px 40px;
-        background:var(--tint); border-bottom:1px solid var(--hair); font-size:13px;}
-  .meta div{flex:1 1 33%; min-width:170px; padding:4px 0;}
-  .meta .k{color:var(--slate); text-transform:uppercase; font-size:10.5px;
-           letter-spacing:.08em;}
-  .meta .v{color:var(--ink); font-weight:600;}
-  .pill-status{display:inline-block; background:var(--caution); color:#fff;
-        padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700;
-        letter-spacing:.04em;}
-  /* Body */
-  main{padding:8px 40px 40px;}
-  h2{color:var(--blue); font-size:19px; margin:30px 0 10px; padding-left:12px;
-     border-left:4px solid var(--teal); line-height:1.25;}
-  h2 .num{color:var(--teal); font-weight:800; margin-right:8px;}
-  h3{color:var(--navy); font-size:15px; margin:18px 0 6px;}
-  p{margin:8px 0;}
-  ul,ol{margin:8px 0; padding-left:22px;}
-  li{margin:3px 0;}
-  a{color:var(--blue);}
-  .lead{font-size:15.5px;}
-  /* KPI strip */
-  .kpis{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 4px;}
-  .kpi{flex:1 1 140px; background:var(--tint); border:1px solid var(--hair);
-       border-top:3px solid var(--teal); border-radius:8px; padding:12px 14px;}
-  .kpi .n{font-size:23px; font-weight:800; color:var(--blue); line-height:1.1;}
-  .kpi .l{font-size:11px; color:var(--slate); text-transform:uppercase;
-          letter-spacing:.06em; margin-top:3px;}
-  .kpi .s{font-size:11px; color:var(--slate); margin-top:2px;}
-  /* Callout */
-  .callout{background:var(--tint); border-left:4px solid var(--teal);
-           padding:12px 16px; border-radius:0 6px 6px 0; margin:14px 0;}
-  .callout.warn{border-left-color:var(--caution);
-           background:#fdf6ec;}
-  .callout .t{font-weight:700; color:var(--navy); margin-bottom:4px;}
-  /* Tables */
-  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px;}
-  th,td{border:1px solid var(--hair); padding:7px 10px; text-align:left;
-        vertical-align:top;}
-  thead th{background:var(--navy); color:#fff; font-weight:600;
-        border-color:var(--navy);}
-  tbody tr:nth-child(even){background:var(--tint);}
-  td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;}
-  tfoot td{font-weight:700; background:#e9f1f8;}
-  .rec-row{background:#e7f6ea !important;}
-  /* Badges */
-  .badge{display:inline-block; padding:1px 9px; border-radius:20px;
-         font-size:11px; font-weight:700; color:#fff;}
-  .b-low{background:var(--pos);} .b-med{background:var(--caution);}
-  .b-high{background:var(--risk);}
-  .b-neu{background:var(--slate);}
-  .est{color:var(--caution); font-weight:700; font-size:11px;
-       border:1px solid var(--caution); border-radius:4px; padding:0 5px;}
-  .muted{color:var(--slate); font-size:12.5px;}
-  .footer{padding:16px 40px 30px; color:var(--slate); font-size:12px;
-          border-top:1px solid var(--hair);}
-  .two{display:flex; gap:22px; flex-wrap:wrap;}
-  .two>div{flex:1 1 260px;}
-  @media print{
-    body{background:#fff;}
-    .doc{box-shadow:none; margin:0; max-width:none;}
-    h2{page-break-after:avoid;}
-    table,.kpi,.callout{page-break-inside:avoid;}
-    .no-print{display:none;}
-  }
+ :root{
+ /* Hach / Veralto brand palette, approximate defaults; replace with exact brand hex if available */
+ --blue:#00539B; --navy:#003C71; --teal:#00A9CE;
+ --ink:#1F2933; --slate:#52606D; --hair:#E4E7EB;
+ --page:#FFFFFF; --tint:#F5F8FB;
+ --pos:#1F8A54; --caution:#C77700; --risk:#C0392B;
+ }
+ *{box-sizing:border-box;}
+ html{-webkit-text-size-adjust:100%;}
+ body{
+ margin:0; background:#eef2f6; color:var(--ink);
+ font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ line-height:1.5; font-size:15px;
+ }
+ .doc{max-width:920px; margin:24px auto; background:var(--page);
+ box-shadow:0 1px 6px rgba(0,0,0,.08);}
+ /* Cover */
+ .cover{background:linear-gradient(120deg,var(--navy),var(--blue));
+ color:#fff; padding:34px 40px 26px;}
+ .cover .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+ color:#bfe0f0; margin:0 0 6px;}
+ .cover h1{margin:0; font-size:29px; line-height:1.2; font-weight:700;}
+ .cover .sub{margin:8px 0 0; font-size:15px; color:#dcecf6; max-width:640px;}
+ .accentbar{height:5px; background:var(--teal);}
+ .meta{display:flex; flex-wrap:wrap; gap:2px 0; padding:14px 40px;
+ background:var(--tint); border-bottom:1px solid var(--hair); font-size:13px;}
+ .meta div{flex:1 1 33%; min-width:170px; padding:4px 0;}
+ .meta .k{color:var(--slate); text-transform:uppercase; font-size:10.5px;
+ letter-spacing:.08em;}
+ .meta .v{color:var(--ink); font-weight:600;}
+ .pill-status{display:inline-block; background:var(--caution); color:#fff;
+ padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700;
+ letter-spacing:.04em;}
+ /* Body */
+ main{padding:8px 40px 40px;}
+ h2{color:var(--blue); font-size:19px; margin:30px 0 10px; padding-left:12px;
+ border-left:4px solid var(--teal); line-height:1.25;}
+ h2 .num{color:var(--teal); font-weight:800; margin-right:8px;}
+ h3{color:var(--navy); font-size:15px; margin:18px 0 6px;}
+ p{margin:8px 0;}
+ ul,ol{margin:8px 0; padding-left:22px;}
+ li{margin:3px 0;}
+ a{color:var(--blue);}
+ .lead{font-size:15.5px;}
+ /* KPI strip */
+ .kpis{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 4px;}
+ .kpi{flex:1 1 140px; background:var(--tint); border:1px solid var(--hair);
+ border-top:3px solid var(--teal); border-radius:8px; padding:12px 14px;}
+ .kpi .n{font-size:23px; font-weight:800; color:var(--blue); line-height:1.1;}
+ .kpi .l{font-size:11px; color:var(--slate); text-transform:uppercase;
+ letter-spacing:.06em; margin-top:3px;}
+ .kpi .s{font-size:11px; color:var(--slate); margin-top:2px;}
+ /* Callout */
+ .callout{background:var(--tint); border-left:4px solid var(--teal);
+ padding:12px 16px; border-radius:0 6px 6px 0; margin:14px 0;}
+ .callout.warn{border-left-color:var(--caution);
+ background:#fdf6ec;}
+ .callout .t{font-weight:700; color:var(--navy); margin-bottom:4px;}
+ /* Tables */
+ table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px;}
+ th,td{border:1px solid var(--hair); padding:7px 10px; text-align:left;
+ vertical-align:top;}
+ thead th{background:var(--navy); color:#fff; font-weight:600;
+ border-color:var(--navy);}
+ tbody tr:nth-child(even){background:var(--tint);}
+ td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;}
+ tfoot td{font-weight:700; background:#e9f1f8;}
+ .rec-row{background:#e7f6ea !important;}
+ /* Badges */
+ .badge{display:inline-block; padding:1px 9px; border-radius:20px;
+ font-size:11px; font-weight:700; color:#fff;}
+ .b-low{background:var(--pos);} .b-med{background:var(--caution);}
+ .b-high{background:var(--risk);}
+ .b-neu{background:var(--slate);}
+ .est{color:var(--caution); font-weight:700; font-size:11px;
+ border:1px solid var(--caution); border-radius:4px; padding:0 5px;}
+ .muted{color:var(--slate); font-size:12.5px;}
+ .footer{padding:16px 40px 30px; color:var(--slate); font-size:12px;
+ border-top:1px solid var(--hair);}
+ .two{display:flex; gap:22px; flex-wrap:wrap;}
+ .two>div{flex:1 1 260px;}
+ @media print{
+ body{background:#fff;}
+ .doc{box-shadow:none; margin:0; max-width:none;}
+ h2{page-break-after:avoid;}
+ table,.kpi,.callout{page-break-inside:avoid;}
+ .no-print{display:none;}
+ }
 </style>
 </head>
 <body>
 <div class="doc">
 
-  <!-- 1. COVER -->
-  <div class="cover">
-    <p class="eyebrow">Business Case · Finance Automation</p>
-    <h1>Commission Accrual Automation</h1>
-    <p class="sub">Solution 1 — Automating the monthly commission accrual process to
-    produce accounting-ready, audit-supported, executive-friendly reporting.</p>
-  </div>
-  <div class="accentbar"></div>
-  <div class="meta">
-    <div><div class="k">Sponsor</div><div class="v">[Finance / Commercial Analytics Leadership]</div></div>
-    <div><div class="k">Author</div><div class="v">Tanushree Arora</div></div>
-    <div><div class="k">Process Owner</div><div class="v">Stephen (Accounting)</div></div>
-    <div><div class="k">Date</div><div class="v">3 July 2026</div></div>
-    <div><div class="k">Version</div><div class="v">1.0</div></div>
-    <div><div class="k">Status</div><div class="v"><span class="pill-status">Draft — For Review</span></div></div>
-  </div>
+ <!-- 1. COVER -->
+ <div class="cover">
+ <p class="eyebrow">Business Case · Finance Automation</p>
+ <h1>Commission Accrual Automation</h1>
+ <p class="sub">Solution 1: Automating the monthly commission accrual process to
+ produce accounting-ready, audit-supported, executive-friendly reporting.</p>
+ </div>
+ <div class="accentbar"></div>
+ <div class="meta">
+ <div><div class="k">Sponsor</div><div class="v">[Finance / Commercial Analytics Leadership]</div></div>
+ <div><div class="k">Author</div><div class="v">Tanushree Arora</div></div>
+ <div><div class="k">Process Owner</div><div class="v">Stephen (Accounting)</div></div>
+ <div><div class="k">Date</div><div class="v">3 July 2026</div></div>
+ <div><div class="k">Version</div><div class="v">1.0</div></div>
+ <div><div class="k">Status</div><div class="v"><span class="pill-status">Draft / For Review</span></div></div>
+ </div>
 
-  <main>
+ <main>
 
-  <!-- 2. EXECUTIVE SUMMARY -->
-  <h2><span class="num">1</span>Executive Summary</h2>
-  <p class="lead"><strong>Recommendation:</strong> Approve development of an automated
-  Commission Accrual solution (Solution 1) to replace the current manual, Excel-based
-  monthly process. The initiative removes fragile pivot-table and copy-paste work,
-  produces accounting-ready and audit-supported output, and gives Finance leadership
-  clear month-end visibility.</p>
+ <!-- 2. EXECUTIVE SUMMARY -->
+ <h2><span class="num">1</span>Executive Summary</h2>
+ <p class="lead"><strong>Recommendation:</strong> Approve development of an automated
+ Commission Accrual solution (Solution 1) to replace the current manual, Excel-based
+ monthly process. The initiative removes fragile pivot-table and copy-paste work,
+ produces accounting-ready and audit-supported output, and gives Finance leadership
+ clear month-end visibility.</p>
 
-  <p><strong>The ask:</strong> Approval of an estimated one-time implementation
-  investment of <strong>~$45,000</strong> <span class="est">ESTIMATE</span> and
-  ~$4,000/year of recurring cost, to be delivered over an estimated 3–4 month timeline.</p>
+ <p><strong>The ask:</strong> Approval of an estimated one-time implementation
+ investment of <strong>~$45,000</strong> <span class="est">ESTIMATE</span> and
+ ~$4,000/year of recurring cost, to be delivered over an estimated 3-4 month timeline.</p>
 
-  <div class="kpis">
-    <div class="kpi"><div class="n">~$45K</div><div class="l">One-time investment</div><div class="s">est. — to be validated</div></div>
-    <div class="kpi"><div class="n">~$26K</div><div class="l">Net benefit / year</div><div class="s">est.</div></div>
-    <div class="kpi"><div class="n">~$54K</div><div class="l">5-yr NPV @ 10%</div><div class="s">est.</div></div>
-    <div class="kpi"><div class="n">~1.7 yr</div><div class="l">Payback</div><div class="s">est.</div></div>
-    <div class="kpi"><div class="n">~50%</div><div class="l">IRR</div><div class="s">est.</div></div>
-  </div>
+ <div class="kpis">
+ <div class="kpi"><div class="n">~$45K</div><div class="l">One-time investment</div><div class="s">est., to be validated</div></div>
+ <div class="kpi"><div class="n">~$26K</div><div class="l">Net benefit / year</div><div class="s">est.</div></div>
+ <div class="kpi"><div class="n">~$54K</div><div class="l">5-yr NPV @ 10%</div><div class="s">est.</div></div>
+ <div class="kpi"><div class="n">~1.7 yr</div><div class="l">Payback</div><div class="s">est.</div></div>
+ <div class="kpi"><div class="n">~50%</div><div class="l">IRR</div><div class="s">est.</div></div>
+ </div>
 
-  <p>Beyond the quantified return, the strongest drivers are <strong>audit readiness,
-  reduced financial-misstatement risk, and standardized executive reporting</strong> —
-  benefits that are strategic rather than purely cost-based. The process today consumes
-  several senior-analyst days each month and depends on manually maintained spreadsheets
-  that break as row counts change; automation converts that effort into reliable,
-  repeatable output that Accounting can book directly.</p>
+ <p>Beyond the quantified return, the strongest drivers are <strong>audit readiness,
+ reduced financial-misstatement risk, and standardized executive reporting</strong>,
+ benefits that are strategic rather than purely cost-based. The process today consumes
+ several senior-analyst days each month and depends on manually maintained spreadsheets
+ that break as row counts change; automation converts that effort into reliable,
+ repeatable output that Accounting can book directly.</p>
 
-  <div class="callout warn">
-    <div class="t">⚠ Note on financials</div>
-    All dollar figures in this document are <strong>illustrative estimates</strong>
-    (marked <span class="est">ESTIMATE</span>) built to complete the business case in the
-    absence of confirmed cost/benefit data. Replace them with actual implementation quotes,
-    the fully-loaded analyst rate, measured effort hours, and the finance-approved discount
-    rate before submitting for approval. See <em>Section 15 — Assumptions &amp; Open
-    Questions</em>.
-  </div>
+ <div class="callout warn">
+ <div class="t">⚠ Note on financials</div>
+ All dollar figures in this document are <strong>illustrative estimates</strong>
+ (marked <span class="est">ESTIMATE</span>) built to complete the business case in the
+ absence of confirmed cost/benefit data. Replace them with actual implementation quotes,
+ the fully-loaded analyst rate, measured effort hours, and the finance-approved discount
+ rate before submitting for approval. See <em>Section 14, Assumptions &amp; Open
+ Questions</em>.
+ </div>
 
-  <!-- 3. PROBLEM -->
-  <h2><span class="num">2</span>Problem &amp; Opportunity</h2>
-  <p>Every month, Commercial Analytics generates commission reports. The process owner
-  (Stephen) is notified, downloads the files, and manually assembles the accrual in
-  Excel from two workbooks — <em>Commissions Payment Made</em> and <em>Commissions
-  Payment Remaining</em>. Producing the accounting-ready workbook currently requires:</p>
-  <ul>
-    <li>Opening the prior month's workbook and copying detailed data and Oracle BI
-    screenshot sheets</li>
-    <li>Refreshing pivot tables and repairing formulas broken by changing row counts</li>
-    <li>Calculating accruals, forecasting the final three business days, and preparing
-    Cost Center and Account summaries</li>
-    <li>Sending the completed workbook to Accounting for journal booking</li>
-  </ul>
+ <!-- 3. PROBLEM -->
+ <h2><span class="num">2</span>Problem &amp; Opportunity</h2>
+ <p>Every month, Commercial Analytics generates commission reports. The process owner
+ (Stephen) is notified, downloads the files, and manually assembles the accrual in
+ Excel from two workbooks, <em>Commissions Payment Made</em> and <em>Commissions
+ Payment Remaining</em>. Producing the accounting-ready workbook currently requires:</p>
+ <ul>
+ <li>Opening the prior month's workbook and copying detailed data and Oracle BI
+ screenshot sheets</li>
+ <li>Refreshing pivot tables and repairing formulas broken by changing row counts</li>
+ <li>Calculating accruals, forecasting the final three business days, and preparing
+ Cost Center and Account summaries</li>
+ <li>Sending the completed workbook to Accounting for journal booking</li>
+ </ul>
 
-  <h3>Pain points</h3>
-  <div class="two">
-    <div>
-      <ul>
-        <li>Manual copy/paste of detailed reports and screenshot sheets</li>
-        <li>Heavy dependence on fragile Excel pivot tables</li>
-        <li>Pivot structures shift monthly as row counts vary</li>
-        <li>Formula references break after each refresh</li>
-        <li>Manual reconciliation and data validation</li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li>Manual three-day commission forecasting</li>
-        <li>Large, slow Excel files</li>
-        <li>No executive-level reporting</li>
-        <li>Time spent maintaining spreadsheets instead of analyzing financials</li>
-        <li>Elevated risk of manual error in a booked accrual</li>
-      </ul>
-    </div>
-  </div>
+ <h3>Pain points</h3>
+ <div class="two">
+ <div>
+ <ul>
+ <li>Manual copy/paste of detailed reports and screenshot sheets</li>
+ <li>Heavy dependence on fragile Excel pivot tables</li>
+ <li>Pivot structures shift monthly as row counts vary</li>
+ <li>Formula references break after each refresh</li>
+ <li>Manual reconciliation and data validation</li>
+ </ul>
+ </div>
+ <div>
+ <ul>
+ <li>Manual three-day commission forecasting</li>
+ <li>Large, slow Excel files</li>
+ <li>No executive-level reporting</li>
+ <li>Time spent maintaining spreadsheets instead of analyzing financials</li>
+ <li>Elevated risk of manual error in a booked accrual</li>
+ </ul>
+ </div>
+ </div>
 
-  <div class="callout">
-    <div class="t">Cost of inaction (do-nothing baseline)</div>
-    The process continues to consume an estimated <strong>3–4 senior-analyst days per
-    month</strong> <span class="est">ESTIMATE</span>, remains error-prone at the point of
-    a financially material accrual, and offers no standardized audit trail or executive
-    reporting. The fragility grows as transaction volumes rise, and knowledge remains
-    concentrated in a single person.
-  </div>
+ <div class="callout">
+ <div class="t">Cost of inaction (do-nothing baseline)</div>
+ The process continues to consume an estimated <strong>3-4 senior-analyst days per
+ month</strong> <span class="est">ESTIMATE</span>, remains error-prone at the point of
+ a financially material accrual, and offers no standardized audit trail or executive
+ reporting. The fragility grows as transaction volumes rise, and knowledge remains
+ concentrated in a single person.
+ </div>
 
-  <!-- 4. STRATEGIC ALIGNMENT -->
-  <h2><span class="num">3</span>Strategic Alignment</h2>
-  <p>The initiative directly advances <strong>Veralto Enterprise System (VES)</strong>
-  principles:</p>
-  <ul>
-    <li><strong>Continuous improvement / lean:</strong> eliminates repetitive, low-value
-    manual work and standardizes a recurring close activity.</li>
-    <li><strong>Quality &amp; problem-solving:</strong> removes fragile pivot/formula
-    dependencies that are a root cause of month-end errors.</li>
-    <li><strong>Customer-centricity (internal):</strong> delivers accounting-ready output
-    and clear executive visibility for Finance stakeholders.</li>
-  </ul>
-  <p>It also supports <span class="est">[STRATEGIC PRIORITY]</span> — the specific
-  organizational priority this initiative rolls up to (e.g., finance transformation,
-  close-cycle efficiency, or control/audit strengthening). Confirm and insert the correct
-  pillar.</p>
+ <!-- 4. STRATEGIC ALIGNMENT -->
+ <h2><span class="num">3</span>Strategic Alignment</h2>
+ <p>The initiative directly advances <strong>Veralto Enterprise System (VES)</strong>
+ principles:</p>
+ <ul>
+ <li><strong>Continuous improvement / lean:</strong> eliminates repetitive, low-value
+ manual work and standardizes a recurring close activity.</li>
+ <li><strong>Quality &amp; problem-solving:</strong> removes fragile pivot/formula
+ dependencies that are a root cause of month-end errors.</li>
+ <li><strong>Customer-centricity (internal):</strong> delivers accounting-ready output
+ and clear executive visibility for Finance stakeholders.</li>
+ </ul>
+ <p>It also supports <span class="est">[STRATEGIC PRIORITY]</span>, the specific
+ organizational priority this initiative rolls up to (e.g., finance transformation,
+ close-cycle efficiency, or control/audit strengthening). Confirm and insert the correct
+ pillar.</p>
 
-  <!-- 5. SOLUTION & SCOPE -->
-  <h2><span class="num">4</span>Proposed Solution &amp; Scope</h2>
-  <p>Build an automated solution that ingests the two commission workbooks, validates and
-  maps the data, applies the established commission logic, and generates a single new,
-  accounting-ready output workbook — never overwriting the source files.</p>
+ <!-- 5. SOLUTION & SCOPE -->
+ <h2><span class="num">4</span>Proposed Solution &amp; Scope</h2>
+ <p>Build an automated solution that ingests the two commission workbooks, validates and
+ maps the data, applies the established commission logic, and generates a single new,
+ accounting-ready output workbook, never overwriting the source files.</p>
 
-  <h3>Core capabilities</h3>
-  <ul>
-    <li><strong>Guided workbook mapping:</strong> the solution proposes which file is
-    <em>Payment Made</em> vs <em>Payment Remaining</em> and <strong>requires user
-    confirmation</strong> before processing — it never assumes the mapping.</li>
-    <li><strong>Automated validation:</strong> checks required columns, missing Cost
-    Centers / Bill-To Account Numbers, blank or invalid/negative commission values, and
-    duplicates; reports imported row counts and whether screenshots are included.</li>
-    <li><strong>Fiscal-aware three-day forecast:</strong> automatically derives the fiscal
-    divisor from the Fiscal Period (four-week → 17, five-week → 22) and estimates the final
-    three business days. The user is never asked which divisor to use — only for the Fiscal
-    Period if it cannot be determined automatically.</li>
-    <li><strong>Aging analysis</strong> on Payment Remaining (Current, 31–60, 61–90,
-    91–180, 181–365, Over 365 days) for Finance visibility into outstanding liabilities.</li>
-    <li><strong>Audit evidence preservation:</strong> Oracle BI screenshot sheets are
-    copied into the output with original formatting — <em>no OCR, no interpretation,
-    no row-count comparison</em>.</li>
-    <li><strong>Executive dashboard &amp; AI commentary:</strong> KPI cards, accrual by
-    month, top cost centers/accounts, Payment Made vs Remaining split, aging distribution,
-    and a data-supported narrative (no speculation). Charts use summarized data only.</li>
-  </ul>
+ <h3>Core capabilities</h3>
+ <ul>
+ <li><strong>Guided workbook mapping:</strong> the solution proposes which file is
+ <em>Payment Made</em> vs <em>Payment Remaining</em> and <strong>requires user
+ confirmation</strong> before processing, it never assumes the mapping.</li>
+ <li><strong>Automated validation:</strong> checks required columns, missing Cost
+ Centers / Bill-To Account Numbers, blank or invalid/negative commission values, and
+ duplicates; reports imported row counts and whether screenshots are included.</li>
+ <li><strong>Fiscal-aware three-day forecast:</strong> automatically derives the fiscal
+ divisor from the Fiscal Period (four-week → 17, five-week → 22) and estimates the final
+ three business days. The user is never asked which divisor to use, only for the Fiscal
+ Period if it cannot be determined automatically.</li>
+ <li><strong>Aging analysis</strong> on Payment Remaining (Current, 31-60, 61-90,
+ 91-180, 181-365, Over 365 days) for Finance visibility into outstanding liabilities.</li>
+ <li><strong>Audit evidence preservation:</strong> Oracle BI screenshot sheets are
+ copied into the output with original formatting, <em>no OCR, no interpretation,
+ no row-count comparison</em>.</li>
+ <li><strong>Executive dashboard &amp; AI commentary:</strong> KPI cards, accrual by
+ month, top cost centers/accounts, Payment Made vs Remaining split, aging distribution,
+ and a data-supported narrative (no speculation). Charts use summarized data only.</li>
+ </ul>
 
-  <h3>Output workbook (12 sheets)</h3>
-  <p class="muted">Executive Summary · Configuration · Month-Year Summary · Cost Center
-  Summary · Cost Center + Account Summary (primary booking view) · Account Summary ·
-  Aging Summary · Payment Made Detail · Payment Remaining Detail · Validation Report ·
-  Audit Evidence · Executive Dashboard.</p>
+ <h3>Output workbook (12 sheets)</h3>
+ <p class="muted">Executive Summary · Configuration · Month-Year Summary · Cost Center
+ Summary · Cost Center + Account Summary (primary booking view) · Account Summary ·
+ Aging Summary · Payment Made Detail · Payment Remaining Detail · Validation Report ·
+ Audit Evidence · Executive Dashboard.</p>
 
-  <h3>Key business logic</h3>
-  <table>
-    <thead><tr><th>Measure</th><th>Definition</th></tr></thead>
-    <tbody>
-      <tr><td>Payment Made Total</td><td>Sum of Commission Amount (payable now — customer payment received)</td></tr>
-      <tr><td>Payment Remaining Total</td><td>Sum of Commission Amount (future liability — payment not yet received)</td></tr>
-      <tr><td>Estimated Commission</td><td>(Payment Made Total ÷ Fiscal Divisor) × 3 remaining business days</td></tr>
-      <tr><td>Final Accrual</td><td>Payment Made + Payment Remaining + Estimated Commission</td></tr>
-    </tbody>
-  </table>
+ <h3>Key business logic</h3>
+ <table>
+ <thead><tr><th>Measure</th><th>Definition</th></tr></thead>
+ <tbody>
+ <tr><td>Payment Made Total</td><td>Sum of Commission Amount (payable now, customer payment received)</td></tr>
+ <tr><td>Payment Remaining Total</td><td>Sum of Commission Amount (future liability, payment not yet received)</td></tr>
+ <tr><td>Estimated Commission</td><td>(Payment Made Total ÷ Fiscal Divisor) × 3 remaining business days</td></tr>
+ <tr><td>Final Accrual</td><td>Payment Made + Payment Remaining + Estimated Commission</td></tr>
+ </tbody>
+ </table>
 
-  <div class="two">
-    <div>
-      <h3>In scope (Solution 1)</h3>
-      <ul>
-        <li>Payment Made &amp; Payment Remaining workbooks</li>
-        <li>Validation, mapping confirmation, forecasting</li>
-        <li>All summaries, aging, dashboard, commentary</li>
-        <li>Audit-evidence preservation</li>
-        <li>Accounting-ready output workbook</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Out of scope (→ Solution 2)</h3>
-      <ul>
-        <li>GL Supplemental reporting</li>
-        <li>Vendor payment analysis &amp; views (by vendor / cost center / account)</li>
-        <li>JE Source filtering (exclude manual journal entries)</li>
-        <li>External commission-vendor payment visibility</li>
-      </ul>
-    </div>
-  </div>
+ <div class="two">
+ <div>
+ <h3>In scope (Solution 1)</h3>
+ <ul>
+ <li>Payment Made &amp; Payment Remaining workbooks</li>
+ <li>Validation, mapping confirmation, forecasting</li>
+ <li>All summaries, aging, dashboard, commentary</li>
+ <li>Audit-evidence preservation</li>
+ <li>Accounting-ready output workbook</li>
+ </ul>
+ </div>
+ <div>
+ <h3>Out of scope (→ Solution 2)</h3>
+ <ul>
+ <li>GL Supplemental reporting</li>
+ <li>Vendor payment analysis &amp; views (by vendor / cost center / account)</li>
+ <li>JE Source filtering (exclude manual journal entries)</li>
+ <li>External commission-vendor payment visibility</li>
+ </ul>
+ </div>
+ </div>
 
-  <!-- 6. OPTIONS -->
-  <h2><span class="num">5</span>Options Considered</h2>
-  <table>
-    <thead><tr><th>Option</th><th>Pros</th><th>Cons</th><th class="num">Rel. cost</th></tr></thead>
-    <tbody>
-      <tr><td><strong>A. Do nothing</strong> (status quo)</td><td>No investment</td><td>Ongoing manual effort, error risk, no audit trail or executive reporting; worsens with volume</td><td class="num">—</td></tr>
-      <tr><td><strong>B. Improve Excel</strong> (better templates/macros)</td><td>Low cost; familiar</td><td>Still pivot/formula-dependent and fragile; limited validation, dashboard, or audit control</td><td class="num">Low</td></tr>
-      <tr class="rec-row"><td><strong>C. Purpose-built automation ✓ Recommended</strong></td><td>Removes manual work &amp; pivots; built-in validation, forecasting, aging, dashboard, audit preservation; accounting-ready</td><td>Requires development &amp; UAT investment</td><td class="num">Medium</td></tr>
-      <tr><td><strong>D. Commercial commission software</strong></td><td>Vendor-supported, feature-rich</td><td>High cost &amp; licensing; heavy integration; likely over-scoped for this need</td><td class="num">High</td></tr>
-    </tbody>
-  </table>
-  <p><strong>Why C wins:</strong> it eliminates the specific fragilities (copy/paste,
-  pivot breakage, manual forecasting) while delivering the required validation, audit,
-  and executive outputs at a fraction of the cost and integration burden of a commercial
-  platform.</p>
+ <!-- 6. OPTIONS -->
+ <h2><span class="num">5</span>Options Considered</h2>
+ <table>
+ <thead><tr><th>Option</th><th>Pros</th><th>Cons</th><th class="num">Rel. cost</th></tr></thead>
+ <tbody>
+ <tr><td><strong>A. Do nothing</strong> (status quo)</td><td>No investment</td><td>Ongoing manual effort, error risk, no audit trail or executive reporting; worsens with volume</td><td class="num">-</td></tr>
+ <tr><td><strong>B. Improve Excel</strong> (better templates/macros)</td><td>Low cost; familiar</td><td>Still pivot/formula-dependent and fragile; limited validation, dashboard, or audit control</td><td class="num">Low</td></tr>
+ <tr class="rec-row"><td><strong>C. Purpose-built automation ✓ Recommended</strong></td><td>Removes manual work &amp; pivots; built-in validation, forecasting, aging, dashboard, audit preservation; accounting-ready</td><td>Requires development &amp; UAT investment</td><td class="num">Medium</td></tr>
+ <tr><td><strong>D. Commercial commission software</strong></td><td>Vendor-supported, feature-rich</td><td>High cost &amp; licensing; heavy integration; likely over-scoped for this need</td><td class="num">High</td></tr>
+ </tbody>
+ </table>
+ <p><strong>Why C wins:</strong> it eliminates the specific fragilities (copy/paste,
+ pivot breakage, manual forecasting) while delivering the required validation, audit,
+ and executive outputs at a fraction of the cost and integration burden of a commercial
+ platform.</p>
 
-  <!-- 7. BENEFITS -->
-  <h2><span class="num">6</span>Benefits</h2>
-  <h3>Quantified <span class="est">ESTIMATE</span></h3>
-  <table>
-    <thead><tr><th>Benefit</th><th>Basis</th><th class="num">Annual value</th></tr></thead>
-    <tbody>
-      <tr><td>Analyst time saved</td><td>~28 hrs/month saved × $65 fully-loaded rate (≈336 hrs/yr)</td><td class="num">$21,840</td></tr>
-      <tr><td>Error / rework reduction</td><td>Fewer accrual corrections &amp; reconciliation cycles</td><td class="num">$8,160</td></tr>
-    </tbody>
-    <tfoot><tr><td colspan="2">Total quantified annual benefit</td><td class="num">$30,000</td></tr></tfoot>
-  </table>
+ <!-- 7. BENEFITS -->
+ <h2><span class="num">6</span>Benefits</h2>
+ <h3>Quantified <span class="est">ESTIMATE</span></h3>
+ <table>
+ <thead><tr><th>Benefit</th><th>Basis</th><th class="num">Annual value</th></tr></thead>
+ <tbody>
+ <tr><td>Analyst time saved</td><td>~28 hrs/month saved × $65 fully-loaded rate (≈336 hrs/yr)</td><td class="num">$21,840</td></tr>
+ <tr><td>Error / rework reduction</td><td>Fewer accrual corrections &amp; reconciliation cycles</td><td class="num">$8,160</td></tr>
+ </tbody>
+ <tfoot><tr><td colspan="2">Total quantified annual benefit</td><td class="num">$30,000</td></tr></tfoot>
+ </table>
 
-  <h3>Qualitative / strategic</h3>
-  <div class="two">
-    <div><ul>
-      <li>Improved audit readiness &amp; standardized evidence</li>
-      <li>Reduced financial-misstatement risk on a material accrual</li>
-      <li>Consistent, repeatable month-end output</li>
-      <li>Executive-level visibility and trend analysis</li>
-    </ul></div>
-    <div><ul>
-      <li>Reduced key-person dependency</li>
-      <li>Analyst time redirected to analysis, not spreadsheet maintenance</li>
-      <li>Scalable as transaction volume grows</li>
-      <li>Faster, lower-stress month-end close</li>
-    </ul></div>
-  </div>
+ <h3>Qualitative / strategic</h3>
+ <div class="two">
+ <div><ul>
+ <li>Improved audit readiness &amp; standardized evidence</li>
+ <li>Reduced financial-misstatement risk on a material accrual</li>
+ <li>Consistent, repeatable month-end output</li>
+ <li>Executive-level visibility and trend analysis</li>
+ </ul></div>
+ <div><ul>
+ <li>Reduced key-person dependency</li>
+ <li>Analyst time redirected to analysis, not spreadsheet maintenance</li>
+ <li>Scalable as transaction volume grows</li>
+ <li>Faster, lower-stress month-end close</li>
+ </ul></div>
+ </div>
 
-  <!-- 8. FINANCIAL ANALYSIS -->
-  <h2><span class="num">7</span>Financial Analysis</h2>
-  <p class="muted">Base case. Horizon: 5 years. Discount / hurdle rate:
-  <strong>10%</strong> <span class="est">[DISCOUNT RATE — confirm with Finance]</span>.
-  All figures <span class="est">ESTIMATE</span>.</p>
+ <!-- 8. FINANCIAL ANALYSIS -->
+ <h2><span class="num">7</span>Financial Analysis</h2>
+ <p class="muted">Base case. Horizon: 5 years. Discount / hurdle rate:
+ <strong>10%</strong> <span class="est">[DISCOUNT RATE, confirm with Finance]</span>.
+ All figures <span class="est">ESTIMATE</span>.</p>
 
-  <table>
-    <thead><tr>
-      <th>Cash flow ($)</th><th class="num">Year 0</th><th class="num">Yr 1</th>
-      <th class="num">Yr 2</th><th class="num">Yr 3</th><th class="num">Yr 4</th><th class="num">Yr 5</th>
-    </tr></thead>
-    <tbody>
-      <tr><td>Implementation (one-time)</td><td class="num">(45,000)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-      <tr><td>Gross annual benefit</td><td class="num">—</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td></tr>
-      <tr><td>Recurring cost</td><td class="num">—</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td></tr>
-      <tr><td><strong>Net cash flow</strong></td><td class="num">(45,000)</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td></tr>
-      <tr><td>Cumulative net</td><td class="num">(45,000)</td><td class="num">(19,000)</td><td class="num">7,000</td><td class="num">33,000</td><td class="num">59,000</td><td class="num">85,000</td></tr>
-      <tr><td>Discount factor @10%</td><td class="num">1.000</td><td class="num">0.909</td><td class="num">0.826</td><td class="num">0.751</td><td class="num">0.683</td><td class="num">0.621</td></tr>
-      <tr><td>Present value</td><td class="num">(45,000)</td><td class="num">23,636</td><td class="num">21,488</td><td class="num">19,535</td><td class="num">17,759</td><td class="num">16,144</td></tr>
-    </tbody>
-    <tfoot><tr><td>Cumulative PV (NPV build)</td><td class="num">(45,000)</td><td class="num">(21,364)</td><td class="num">124</td><td class="num">19,659</td><td class="num">37,418</td><td class="num">53,562</td></tr></tfoot>
-  </table>
+ <table>
+ <thead><tr>
+ <th>Cash flow ($)</th><th class="num">Year 0</th><th class="num">Yr 1</th>
+ <th class="num">Yr 2</th><th class="num">Yr 3</th><th class="num">Yr 4</th><th class="num">Yr 5</th>
+ </tr></thead>
+ <tbody>
+ <tr><td>Implementation (one-time)</td><td class="num">(45,000)</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+ <tr><td>Gross annual benefit</td><td class="num">-</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td><td class="num">30,000</td></tr>
+ <tr><td>Recurring cost</td><td class="num">-</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td><td class="num">(4,000)</td></tr>
+ <tr><td><strong>Net cash flow</strong></td><td class="num">(45,000)</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td><td class="num">26,000</td></tr>
+ <tr><td>Cumulative net</td><td class="num">(45,000)</td><td class="num">(19,000)</td><td class="num">7,000</td><td class="num">33,000</td><td class="num">59,000</td><td class="num">85,000</td></tr>
+ <tr><td>Discount factor @10%</td><td class="num">1.000</td><td class="num">0.909</td><td class="num">0.826</td><td class="num">0.751</td><td class="num">0.683</td><td class="num">0.621</td></tr>
+ <tr><td>Present value</td><td class="num">(45,000)</td><td class="num">23,636</td><td class="num">21,488</td><td class="num">19,535</td><td class="num">17,759</td><td class="num">16,144</td></tr>
+ </tbody>
+ <tfoot><tr><td>Cumulative PV (NPV build)</td><td class="num">(45,000)</td><td class="num">(21,364)</td><td class="num">124</td><td class="num">19,659</td><td class="num">37,418</td><td class="num">53,562</td></tr></tfoot>
+ </table>
 
-  <div class="kpis">
-    <div class="kpi"><div class="n">$53.6K</div><div class="l">NPV (5-yr, 10%)</div></div>
-    <div class="kpi"><div class="n">~50%</div><div class="l">IRR</div></div>
-    <div class="kpi"><div class="n">1.7 yr</div><div class="l">Simple payback</div></div>
-    <div class="kpi"><div class="n">~2.0 yr</div><div class="l">Discounted payback</div></div>
-    <div class="kpi"><div class="n">189%</div><div class="l">5-yr ROI</div></div>
-  </div>
-  <p class="muted">ROI = (5-yr net benefit $130K − investment $45K) ÷ $45K = 189%.
-  Payback: investment recovered partway through Year 2.</p>
+ <div class="kpis">
+ <div class="kpi"><div class="n">$53.6K</div><div class="l">NPV (5-yr, 10%)</div></div>
+ <div class="kpi"><div class="n">~50%</div><div class="l">IRR</div></div>
+ <div class="kpi"><div class="n">1.7 yr</div><div class="l">Simple payback</div></div>
+ <div class="kpi"><div class="n">~2.0 yr</div><div class="l">Discounted payback</div></div>
+ <div class="kpi"><div class="n">189%</div><div class="l">5-yr ROI</div></div>
+ </div>
+ <p class="muted">ROI = (5-yr net benefit $130K − investment $45K) ÷ $45K = 189%.
+ Payback: investment recovered partway through Year 2.</p>
 
-  <h3>Sensitivity / scenario analysis</h3>
-  <table>
-    <thead><tr>
-      <th>Scenario</th><th class="num">Investment</th><th class="num">Net benefit/yr</th>
-      <th class="num">NPV (10%,5yr)</th><th class="num">IRR</th><th class="num">Payback</th>
-    </tr></thead>
-    <tbody>
-      <tr><td>Conservative</td><td class="num">$60,000</td><td class="num">$13,400</td><td class="num">($9,200)</td><td class="num">~4%</td><td class="num">4.5 yr</td></tr>
-      <tr class="rec-row"><td><strong>Base</strong></td><td class="num">$45,000</td><td class="num">$26,000</td><td class="num">$53,600</td><td class="num">~50%</td><td class="num">1.7 yr</td></tr>
-      <tr><td>Optimistic</td><td class="num">$35,000</td><td class="num">$50,600</td><td class="num">$156,800</td><td class="num">&gt;140%</td><td class="num">0.7 yr</td></tr>
-    </tbody>
-  </table>
-  <p class="muted"><strong>Most sensitive drivers:</strong> monthly hours saved, the
-  fully-loaded analyst rate, and one-time implementation cost. The result stays value-
-  positive across the base and optimistic cases; the conservative case turns on a higher
-  build cost combined with lower measured time savings — confirm these two inputs first.</p>
+ <h3>Sensitivity / scenario analysis</h3>
+ <table>
+ <thead><tr>
+ <th>Scenario</th><th class="num">Investment</th><th class="num">Net benefit/yr</th>
+ <th class="num">NPV (10%,5yr)</th><th class="num">IRR</th><th class="num">Payback</th>
+ </tr></thead>
+ <tbody>
+ <tr><td>Conservative</td><td class="num">$60,000</td><td class="num">$13,400</td><td class="num">($9,200)</td><td class="num">~4%</td><td class="num">4.5 yr</td></tr>
+ <tr class="rec-row"><td><strong>Base</strong></td><td class="num">$45,000</td><td class="num">$26,000</td><td class="num">$53,600</td><td class="num">~50%</td><td class="num">1.7 yr</td></tr>
+ <tr><td>Optimistic</td><td class="num">$35,000</td><td class="num">$50,600</td><td class="num">$156,800</td><td class="num">&gt;140%</td><td class="num">0.7 yr</td></tr>
+ </tbody>
+ </table>
+ <p class="muted"><strong>Most sensitive drivers:</strong> monthly hours saved, the
+ fully-loaded analyst rate, and one-time implementation cost. The result stays value-
+ positive across the base and optimistic cases; the conservative case turns on a higher
+ build cost combined with lower measured time savings, confirm these two inputs first.</p>
 
-  <!-- 9. RISKS -->
-  <h2><span class="num">8</span>Risks &amp; Mitigations</h2>
-  <table>
-    <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
-    <tbody>
-      <tr><td>Source workbook format changes (columns/layout)</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-high">High</span></td><td>Robust column mapping + validation that fails clearly when structure changes</td></tr>
-      <tr><td>Incorrect Payment Made / Remaining mapping</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-high">High</span></td><td>Mandatory user confirmation of mapping before processing (never assumed)</td></tr>
-      <tr><td>Fiscal Period mis-detected → wrong divisor</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Auto-derive divisor; prompt only for Fiscal Period when undetermined</td></tr>
-      <tr><td>User adoption / trust in automated accrual</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Parallel run vs manual for 1–2 months; transparent validation report</td></tr>
-      <tr><td>Audit acceptance of preserved evidence</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Preserve screenshots unaltered; document control approach with audit early</td></tr>
-      <tr><td>Estimated benefits not realized</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Baseline current effort before build; measure post-launch against KPIs</td></tr>
-    </tbody>
-  </table>
+ <!-- 9. RISKS -->
+ <h2><span class="num">8</span>Risks &amp; Mitigations</h2>
+ <table>
+ <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
+ <tbody>
+ <tr><td>Source workbook format changes (columns/layout)</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-high">High</span></td><td>Robust column mapping + validation that fails clearly when structure changes</td></tr>
+ <tr><td>Incorrect Payment Made / Remaining mapping</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-high">High</span></td><td>Mandatory user confirmation of mapping before processing (never assumed)</td></tr>
+ <tr><td>Fiscal Period mis-detected → wrong divisor</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Auto-derive divisor; prompt only for Fiscal Period when undetermined</td></tr>
+ <tr><td>User adoption / trust in automated accrual</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Parallel run vs manual for 1-2 months; transparent validation report</td></tr>
+ <tr><td>Audit acceptance of preserved evidence</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Preserve screenshots unaltered; document control approach with audit early</td></tr>
+ <tr><td>Estimated benefits not realized</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Baseline current effort before build; measure post-launch against KPIs</td></tr>
+ </tbody>
+ </table>
 
-  <!-- 10. IMPLEMENTATION -->
-  <h2><span class="num">9</span>Implementation Plan</h2>
-  <table>
-    <thead><tr><th>Phase</th><th>Key activities</th><th>Duration <span class="est">EST</span></th></tr></thead>
-    <tbody>
-      <tr><td>1. Discovery &amp; baseline</td><td>Confirm logic, sample workbooks, baseline current effort, finalize requirements</td><td>2–3 wks</td></tr>
-      <tr><td>2. Build</td><td>Ingestion, validation, mapping confirmation, calculations, forecasting, aging, summaries</td><td>4–6 wks</td></tr>
-      <tr><td>3. Dashboard &amp; commentary</td><td>Executive dashboard, KPI cards, data-supported narrative, audit-evidence handling</td><td>2 wks</td></tr>
-      <tr><td>4. UAT &amp; parallel run</td><td>Validate output vs manual for 1–2 close cycles; Accounting sign-off</td><td>2–4 wks</td></tr>
-      <tr><td>5. Go-live &amp; handover</td><td>Documentation, training, transition to standard monthly use</td><td>1 wk</td></tr>
-    </tbody>
-  </table>
-  <p class="muted">Indicative total: ~3–4 months, dependent on availability of sample data
-  and reviewer time.</p>
+ <!-- 10. IMPLEMENTATION -->
+ <h2><span class="num">9</span>Implementation Plan</h2>
+ <table>
+ <thead><tr><th>Phase</th><th>Key activities</th><th>Duration <span class="est">EST</span></th></tr></thead>
+ <tbody>
+ <tr><td>1. Discovery &amp; baseline</td><td>Confirm logic, sample workbooks, baseline current effort, finalize requirements</td><td>2-3 wks</td></tr>
+ <tr><td>2. Build</td><td>Ingestion, validation, mapping confirmation, calculations, forecasting, aging, summaries</td><td>4-6 wks</td></tr>
+ <tr><td>3. Dashboard &amp; commentary</td><td>Executive dashboard, KPI cards, data-supported narrative, audit-evidence handling</td><td>2 wks</td></tr>
+ <tr><td>4. UAT &amp; parallel run</td><td>Validate output vs manual for 1-2 close cycles; Accounting sign-off</td><td>2-4 wks</td></tr>
+ <tr><td>5. Go-live &amp; handover</td><td>Documentation, training, transition to standard monthly use</td><td>1 wk</td></tr>
+ </tbody>
+ </table>
+ <p class="muted">Indicative total: ~3-4 months, dependent on availability of sample data
+ and reviewer time.</p>
 
-  <!-- 11. RESOURCE & ORG -->
-  <h2><span class="num">10</span>Resource &amp; Organizational Impact</h2>
-  <ul>
-    <li><strong>People:</strong> process owner (Stephen) for requirements &amp; UAT; a
-    developer/automation resource for the build; Accounting for sign-off; light Finance-
-    leadership input on the dashboard.</li>
-    <li><strong>Process change:</strong> monthly routine shifts from manual assembly to
-    upload → confirm mapping → review validation → book. Analyst time is redirected from
-    spreadsheet maintenance to review and analysis.</li>
-    <li><strong>Skills:</strong> minimal new skills for end users; short training on the
-    new workflow and validation report.</li>
-  </ul>
+ <!-- 11. RESOURCE & ORG -->
+ <h2><span class="num">10</span>Resource &amp; Organizational Impact</h2>
+ <ul>
+ <li><strong>People:</strong> process owner (Stephen) for requirements &amp; UAT; a
+ developer/automation resource for the build; Accounting for sign-off; light Finance-
+ leadership input on the dashboard.</li>
+ <li><strong>Process change:</strong> monthly routine shifts from manual assembly to
+ upload → confirm mapping → review validation → book. Analyst time is redirected from
+ spreadsheet maintenance to review and analysis.</li>
+ <li><strong>Skills:</strong> minimal new skills for end users; short training on the
+ new workflow and validation report.</li>
+ </ul>
 
-  <!-- 12. DEPENDENCIES -->
-  <h2><span class="num">11</span>Dependencies &amp; Constraints</h2>
-  <ul>
-    <li>Timely monthly availability of the two commission workbooks from Commercial Analytics</li>
-    <li>Consistent source column structure (or advance notice of changes)</li>
-    <li>Reliable determination of Fiscal Period for divisor selection</li>
-    <li>Reviewer/UAT availability across 1–2 close cycles</li>
-    <li>Solution 1 is limited to the two workbooks; GL Supplemental and vendor analysis are Solution 2</li>
-  </ul>
+ <!-- 12. DEPENDENCIES -->
+ <h2><span class="num">11</span>Dependencies &amp; Constraints</h2>
+ <ul>
+ <li>Timely monthly availability of the two commission workbooks from Commercial Analytics</li>
+ <li>Consistent source column structure (or advance notice of changes)</li>
+ <li>Reliable determination of Fiscal Period for divisor selection</li>
+ <li>Reviewer/UAT availability across 1-2 close cycles</li>
+ <li>Solution 1 is limited to the two workbooks; GL Supplemental and vendor analysis are Solution 2</li>
+ </ul>
 
-  <!-- 13. SUCCESS METRICS -->
-  <h2><span class="num">12</span>Success Metrics / KPIs</h2>
-  <table>
-    <thead><tr><th>KPI</th><th>Target</th><th>Measurement</th></tr></thead>
-    <tbody>
-      <tr><td>Manual copy/paste &amp; pivot steps eliminated</td><td>100%</td><td>Process walkthrough vs current steps</td></tr>
-      <tr><td>Analyst time per close</td><td>↓ ~85% (≈3–4 days → &lt;½ day)</td><td>Timed baseline vs post-launch</td></tr>
-      <tr><td>Accrual booking-ready output</td><td>Used directly by Accounting</td><td>Accounting sign-off; no rework</td></tr>
-      <tr><td>Forecast correctness</td><td>Divisor auto-applied correctly every close</td><td>Config/validation report review</td></tr>
-      <tr><td>Manual accrual errors / corrections</td><td>↓ toward zero</td><td>Post-close correction count</td></tr>
-      <tr><td>Audit evidence completeness</td><td>Screenshots preserved every close</td><td>Validation report "screenshot included = Yes"</td></tr>
-      <tr><td>Executive dashboard delivered</td><td>Every close</td><td>Dashboard produced &amp; reviewed by leadership</td></tr>
-    </tbody>
-  </table>
+ <!-- 13. SUCCESS METRICS -->
+ <h2><span class="num">12</span>Success Metrics / KPIs</h2>
+ <table>
+ <thead><tr><th>KPI</th><th>Target</th><th>Measurement</th></tr></thead>
+ <tbody>
+ <tr><td>Manual copy/paste &amp; pivot steps eliminated</td><td>100%</td><td>Process walkthrough vs current steps</td></tr>
+ <tr><td>Analyst time per close</td><td>↓ ~85% (≈3-4 days → &lt;½ day)</td><td>Timed baseline vs post-launch</td></tr>
+ <tr><td>Accrual booking-ready output</td><td>Used directly by Accounting</td><td>Accounting sign-off; no rework</td></tr>
+ <tr><td>Forecast correctness</td><td>Divisor auto-applied correctly every close</td><td>Config/validation report review</td></tr>
+ <tr><td>Manual accrual errors / corrections</td><td>↓ toward zero</td><td>Post-close correction count</td></tr>
+ <tr><td>Audit evidence completeness</td><td>Screenshots preserved every close</td><td>Validation report "screenshot included = Yes"</td></tr>
+ <tr><td>Executive dashboard delivered</td><td>Every close</td><td>Dashboard produced &amp; reviewed by leadership</td></tr>
+ </tbody>
+ </table>
 
-  <!-- 14. RECOMMENDATION -->
-  <h2><span class="num">13</span>Recommendation &amp; Next Steps</h2>
-  <p><strong>Recommendation:</strong> Proceed with Option C — build the purpose-built
-  Commission Accrual Automation (Solution 1). It resolves the core fragilities of the
-  current process, delivers accounting-ready and audit-supported output, and provides
-  executive visibility, with an attractive estimated return and strong strategic (risk /
-  audit) benefits.</p>
-  <ol>
-    <li>Confirm the financial inputs and replace the estimates (implementation quote,
-    loaded analyst rate, measured effort, discount rate).</li>
-    <li>Secure sponsor approval and funding for the estimated ~$45K one-time investment.</li>
-    <li>Baseline current monthly effort before build begins (needed to prove savings).</li>
-    <li>Kick off Phase 1 (Discovery) with sample workbooks and the process owner.</li>
-  </ol>
+ <!-- 14. RECOMMENDATION -->
+ <h2><span class="num">13</span>Recommendation &amp; Next Steps</h2>
+ <p><strong>Recommendation:</strong> Proceed with Option C, build the purpose-built
+ Commission Accrual Automation (Solution 1). It resolves the core fragilities of the
+ current process, delivers accounting-ready and audit-supported output, and provides
+ executive visibility, with an attractive estimated return and strong strategic (risk /
+ audit) benefits.</p>
+ <ol>
+ <li>Confirm the financial inputs and replace the estimates (implementation quote,
+ loaded analyst rate, measured effort, discount rate).</li>
+ <li>Secure sponsor approval and funding for the estimated ~$45K one-time investment.</li>
+ <li>Baseline current monthly effort before build begins (needed to prove savings).</li>
+ <li>Kick off Phase 1 (Discovery) with sample workbooks and the process owner.</li>
+ </ol>
 
-  <!-- 15. ASSUMPTIONS -->
-  <h2><span class="num">14</span>Assumptions &amp; Open Questions</h2>
-  <h3>Assumptions made (to validate)</h3>
-  <ul>
-    <li>Current effort ≈ 3–4 senior-analyst days (~28 hrs) per month; ~85% reduction after automation.</li>
-    <li>Fully-loaded analyst rate ≈ $65/hour.</li>
-    <li>One-time implementation ≈ $45,000; recurring ≈ $4,000/year.</li>
-    <li>Error/rework reduction ≈ $8,000/year.</li>
-    <li>5-year analysis horizon; 10% discount/hurdle rate; benefits begin in Year 1.</li>
-    <li>Solution is internally built/AI-assisted rather than a licensed commercial platform.</li>
-  </ul>
-  <h3>Open questions</h3>
-  <ul>
-    <li>Actual implementation cost — internal build vs vendor quote?</li>
-    <li>Confirmed fully-loaded analyst rate and measured monthly hours?</li>
-    <li>Finance-approved discount/hurdle rate?</li>
-    <li>Who is the executive sponsor, and what strategic priority does this roll up to?</li>
-    <li>Target go-live month relative to the close calendar?</li>
-    <li>Any control/SOX requirements that affect the audit-evidence approach?</li>
-  </ul>
+ <!-- 15. ASSUMPTIONS -->
+ <h2><span class="num">14</span>Assumptions &amp; Open Questions</h2>
+ <h3>Assumptions made (to validate)</h3>
+ <ul>
+ <li>Current effort ≈ 3-4 senior-analyst days (~28 hrs) per month; ~85% reduction after automation.</li>
+ <li>Fully-loaded analyst rate ≈ $65/hour.</li>
+ <li>One-time implementation ≈ $45,000; recurring ≈ $4,000/year.</li>
+ <li>Error/rework reduction ≈ $8,000/year.</li>
+ <li>5-year analysis horizon; 10% discount/hurdle rate; benefits begin in Year 1.</li>
+ <li>Solution is internally built/AI-assisted rather than a licensed commercial platform.</li>
+ </ul>
+ <h3>Open questions</h3>
+ <ul>
+ <li>Actual implementation cost, internal build vs vendor quote?</li>
+ <li>Confirmed fully-loaded analyst rate and measured monthly hours?</li>
+ <li>Finance-approved discount/hurdle rate?</li>
+ <li>Who is the executive sponsor, and what strategic priority does this roll up to?</li>
+ <li>Target go-live month relative to the close calendar?</li>
+ <li>Any control/SOX requirements that affect the audit-evidence approach?</li>
+ </ul>
 
-  </main>
+ </main>
 
-  <div class="footer">
-    Confidential — internal use. Generated with the reusable Business Case Generator
-    prompt. Financial figures are illustrative estimates pending validated inputs.
-    Hach / Veralto brand palette applied (approximate; replace with official hex codes if available).
-  </div>
+ <div class="footer">
+ Confidential, internal use. Generated with the reusable Business Case Generator
+ prompt. Financial figures are illustrative estimates pending validated inputs.
+ Hach / Veralto brand palette applied (approximate; replace with official hex codes if available).
+ </div>
 
 </div>
 </body>

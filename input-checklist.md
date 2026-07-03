@@ -1,7 +1,7 @@
-# Business Case — Input Checklist
+# Business Case, Input Checklist
 
 Gather these before running [`business-case-prompt.md`](business-case-prompt.md). You don't
-need everything, but the items marked **(critical)** should be present — otherwise the AI
+need everything, but the items marked **(critical)** should be present, otherwise the AI
 will pause and ask you for them before drafting. The more you provide, the stronger and
 faster the first draft.
 
@@ -18,7 +18,7 @@ faster the first draft.
 - [ ] What problem or opportunity are we addressing?
 - [ ] How big is it? (magnitude, frequency, who's affected)
 - [ ] What's the **cost of doing nothing**?
-- [ ] What does success look like — the goal in one sentence?
+- [ ] What does success look like, the goal in one sentence?
 
 ## 3. Proposed solution & scope **(critical: solution)**
 - [ ] What will we actually do?
@@ -56,7 +56,7 @@ faster the first draft.
 - [ ] Dependencies (systems, teams, approvals) and hard constraints
 
 ## 10. Success metrics
-- [ ] The 3–5 KPIs that prove this worked
+- [ ] The 3-5 KPIs that prove this worked
 - [ ] A target for each, and how/when you'll measure it
 
 ## 11. Branding (optional)
