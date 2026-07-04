@@ -86,6 +86,25 @@
  border-top:1px solid var(--hair);}
  .two{display:flex; gap:22px; flex-wrap:wrap;}
  .two>div{flex:1 1 260px;}
+ /* charts + motion (screen only; static in print and for reduced-motion) */
+ .chart-wrap{margin:16px 0 6px;}
+ .chart-title{font-size:12.5px; color:var(--slate); font-weight:600; margin:0 0 4px;}
+ .chart svg{width:100%; height:auto; max-width:620px; display:block;}
+ .axis-label{fill:var(--slate); font-size:11px;}
+ .val-label{fill:var(--ink); font-size:11px; font-weight:700;}
+ .bar{transform-box:fill-box;}
+ .bar.pos{transform-origin:center bottom;}
+ .bar.neg{transform-origin:center top;}
+ @media (prefers-reduced-motion: no-preference){
+ .bar{transform:scaleY(0); transition:transform .85s cubic-bezier(.22,1,.36,1);}
+ .chart.in .bar{transform:scaleY(1);}
+ .val-label{opacity:0; transition:opacity .4s ease .45s;}
+ .chart.in .val-label{opacity:1;}
+ }
+ @media print{
+ .bar{transform:none !important;}
+ .val-label{opacity:1 !important;}
+ }
  @media print{
  body{background:#fff;}
  .doc{box-shadow:none; margin:0; max-width:none;}
@@ -352,6 +371,34 @@
  <tfoot><tr><td>Cumulative PV (NPV build)</td><td class="num">(45,000)</td><td class="num">(21,364)</td><td class="num">124</td><td class="num">19,659</td><td class="num">37,418</td><td class="num">53,562</td></tr></tfoot>
  </table>
 
+ <div class="chart-wrap">
+ <p class="chart-title">Cumulative net cash flow by year ($000s) — turns positive partway through Year 2</p>
+ <div class="chart" role="img" aria-label="Cumulative net cash flow by year, in thousands of dollars: Year 0 minus 45, Year 1 minus 19, Year 2 positive 7, Year 3 positive 33, Year 4 positive 59, Year 5 positive 85.">
+ <svg viewBox="0 0 620 264" xmlns="http://www.w3.org/2000/svg">
+ <line x1="55" y1="150.8" x2="600" y2="150.8" stroke="#52606D" stroke-width="1" stroke-dasharray="3 3"/>
+ <text class="axis-label" x="46" y="154" text-anchor="end">0</text>
+ <rect class="bar neg" x="82" y="150.8" width="46" height="69.2" rx="3" fill="#C77700" style="transition-delay:.00s"/>
+ <rect class="bar neg" x="172" y="150.8" width="46" height="29.2" rx="3" fill="#C77700" style="transition-delay:.06s"/>
+ <rect class="bar pos" x="262" y="140" width="46" height="10.8" rx="3" fill="#00A9CE" style="transition-delay:.12s"/>
+ <rect class="bar pos" x="352" y="100" width="46" height="50.8" rx="3" fill="#00A9CE" style="transition-delay:.18s"/>
+ <rect class="bar pos" x="442" y="60" width="46" height="90.8" rx="3" fill="#00A9CE" style="transition-delay:.24s"/>
+ <rect class="bar pos" x="532" y="20" width="46" height="130.8" rx="3" fill="#00A9CE" style="transition-delay:.30s"/>
+ <text class="val-label" x="105" y="233" text-anchor="middle">-45</text>
+ <text class="val-label" x="195" y="193" text-anchor="middle">-19</text>
+ <text class="val-label" x="285" y="135" text-anchor="middle">7</text>
+ <text class="val-label" x="375" y="95" text-anchor="middle">33</text>
+ <text class="val-label" x="465" y="55" text-anchor="middle">59</text>
+ <text class="val-label" x="555" y="15" text-anchor="middle">85</text>
+ <text class="axis-label" x="105" y="252" text-anchor="middle">Yr 0</text>
+ <text class="axis-label" x="195" y="252" text-anchor="middle">Yr 1</text>
+ <text class="axis-label" x="285" y="252" text-anchor="middle">Yr 2</text>
+ <text class="axis-label" x="375" y="252" text-anchor="middle">Yr 3</text>
+ <text class="axis-label" x="465" y="252" text-anchor="middle">Yr 4</text>
+ <text class="axis-label" x="555" y="252" text-anchor="middle">Yr 5</text>
+ </svg>
+ </div>
+ </div>
+
  <div class="kpis">
  <div class="kpi"><div class="n">$53.6K</div><div class="l">NPV (5-yr, 10%)</div></div>
  <div class="kpi"><div class="n">~50%</div><div class="l">IRR</div></div>
@@ -374,6 +421,25 @@
  <tr><td>Optimistic</td><td class="num">$35,000</td><td class="num">$50,600</td><td class="num">$156,800</td><td class="num">&gt;140%</td><td class="num">0.7 yr</td></tr>
  </tbody>
  </table>
+
+ <div class="chart-wrap">
+ <p class="chart-title">NPV by scenario ($000s) — Base case highlighted</p>
+ <div class="chart" role="img" aria-label="Net present value by scenario, in thousands of dollars: Conservative minus 9, Base 54, Optimistic 157.">
+ <svg viewBox="0 0 620 264" xmlns="http://www.w3.org/2000/svg">
+ <line x1="55" y1="208.9" x2="600" y2="208.9" stroke="#52606D" stroke-width="1" stroke-dasharray="3 3"/>
+ <text class="axis-label" x="46" y="212" text-anchor="end">0</text>
+ <rect class="bar neg" x="105" y="208.9" width="90" height="11.1" rx="3" fill="#C77700" style="transition-delay:.00s"/>
+ <rect class="bar pos" x="285" y="144.3" width="90" height="64.6" rx="3" fill="#00A9CE" style="transition-delay:.08s"/>
+ <rect class="bar pos" x="465" y="20" width="90" height="188.9" rx="3" fill="#00539B" style="transition-delay:.16s"/>
+ <text class="val-label" x="150" y="234" text-anchor="middle">-9</text>
+ <text class="val-label" x="330" y="139" text-anchor="middle">54</text>
+ <text class="val-label" x="510" y="15" text-anchor="middle">157</text>
+ <text class="axis-label" x="150" y="252" text-anchor="middle">Conservative</text>
+ <text class="axis-label" x="330" y="252" text-anchor="middle">Base</text>
+ <text class="axis-label" x="510" y="252" text-anchor="middle">Optimistic</text>
+ </svg>
+ </div>
+ </div>
  <p class="muted"><strong>What moves the result most:</strong> the hours saved each
  month, the fully-loaded analyst rate, and the one-time build cost. The base and
  optimistic cases both stay comfortably positive. Only the conservative case gets tight,
@@ -492,5 +558,51 @@
  </div>
 
 </div>
+<script>
+(function(){
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var nums = Array.prototype.slice.call(document.querySelectorAll('.kpi .n'));
+ nums.forEach(function(el){
+ var m = el.textContent.trim().match(/^([^\d-]*)(-?[\d,]*\.?\d+)(.*)$/);
+ if(!m){ return; }
+ el.dataset.prefix = m[1]; el.dataset.suffix = m[3];
+ el.dataset.target = m[2].replace(/,/g,'');
+ el.dataset.decimals = (m[2].split('.')[1] || '').length;
+ if(!reduce){
+ var d = parseInt(el.dataset.decimals, 10);
+ el.textContent = m[1] + (0).toFixed(d) + m[3];
+ }
+ });
+ function countUp(el){
+ var target = parseFloat(el.dataset.target);
+ var dec = parseInt(el.dataset.decimals, 10);
+ var pre = el.dataset.prefix, suf = el.dataset.suffix, dur = 1000, start = null;
+ function step(ts){
+ if(start === null){ start = ts; }
+ var p = Math.min((ts - start) / dur, 1);
+ var v = target * (1 - Math.pow(1 - p, 3));
+ el.textContent = pre + v.toFixed(dec) + suf;
+ if(p < 1){ requestAnimationFrame(step); }
+ else { el.textContent = pre + target.toFixed(dec) + suf; }
+ }
+ requestAnimationFrame(step);
+ }
+ if('IntersectionObserver' in window && !reduce){
+ var io = new IntersectionObserver(function(entries){
+ entries.forEach(function(e){
+ if(!e.isIntersecting){ return; }
+ var t = e.target;
+ if(t.classList.contains('chart')){ t.classList.add('in'); }
+ else if(t.classList.contains('n')){ countUp(t); }
+ io.unobserve(t);
+ });
+ }, {threshold: 0.35});
+ document.querySelectorAll('.chart').forEach(function(c){ io.observe(c); });
+ nums.forEach(function(n){ io.observe(n); });
+ } else {
+ document.querySelectorAll('.chart').forEach(function(c){ c.classList.add('in'); });
+ }
+})();
+</script>
 </body>
 </html>
