@@ -12,6 +12,8 @@ Hach / Veralto brand palette and ready to present or print to PDF.
 |------|---------|
 | [`business-case-prompt.md`](business-case-prompt.md) | **The reusable prompt.** Copy the fenced block and paste it into your AI. |
 | [`input-checklist.md`](input-checklist.md) | What to gather *before* you run the prompt, so the draft comes out strong. |
+| `cases/` | Finished business cases (HTML for print/PDF, and an editable Word version). |
+| `scripts/build_docx.py` | Regenerates the Word version of the Commission Accrual case. Run `pip install python-docx` then `python scripts/build_docx.py`. Keep its wording in sync with the matching HTML. |
 | `README.md` | This guide. |
 
 ## How to use it
