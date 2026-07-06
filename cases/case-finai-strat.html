@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Case, FinAI-Strat (Enterprise AI Strategy Portal)</title>
+<style>
+ :root{
+ --blue:#00539B; --navy:#003C71; --teal:#00A9CE;
+ --ink:#1F2933; --slate:#52606D; --hair:#E4E7EB;
+ --page:#FFFFFF; --tint:#F5F8FB;
+ --pos:#1F8A54; --caution:#C77700; --risk:#C0392B;
+ }
+ *{box-sizing:border-box;}
+ html{-webkit-text-size-adjust:100%;}
+ body{
+ margin:0; background:#eef2f6; color:var(--ink);
+ font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ line-height:1.5; font-size:15px;
+ }
+ .doc{max-width:920px; margin:24px auto; background:var(--page);
+ box-shadow:0 1px 6px rgba(0,0,0,.08);}
+ .cover{background:linear-gradient(120deg,var(--navy),var(--blue));
+ color:#fff; padding:34px 40px 26px;}
+ .cover .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+ color:#bfe0f0; margin:0 0 6px;}
+ .cover h1{margin:0; font-size:29px; line-height:1.2; font-weight:700;}
+ .cover .sub{margin:8px 0 0; font-size:15px; color:#dcecf6; max-width:640px;}
+ .accentbar{height:5px; background:var(--teal);}
+ .meta{display:flex; flex-wrap:wrap; gap:2px 0; padding:14px 40px;
+ background:var(--tint); border-bottom:1px solid var(--hair); font-size:13px;}
+ .meta div{flex:1 1 33%; min-width:170px; padding:4px 0;}
+ .meta .k{color:var(--slate); text-transform:uppercase; font-size:10.5px;
+ letter-spacing:.08em;}
+ .meta .v{color:var(--ink); font-weight:600;}
+ .pill-status{display:inline-block; background:var(--caution); color:#fff;
+ padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700;
+ letter-spacing:.04em;}
+ main{padding:8px 40px 40px;}
+ h2{color:var(--blue); font-size:19px; margin:30px 0 10px; padding-left:12px;
+ border-left:4px solid var(--teal); line-height:1.25;}
+ h2 .num{color:var(--teal); font-weight:800; margin-right:8px;}
+ h3{color:var(--navy); font-size:15px; margin:18px 0 6px;}
+ p{margin:8px 0;}
+ ul,ol{margin:8px 0; padding-left:22px;}
+ li{margin:3px 0;}
+ a{color:var(--blue);}
+ .lead{font-size:15.5px;}
+ .kpis{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 4px;}
+ .kpi{flex:1 1 140px; background:var(--tint); border:1px solid var(--hair);
+ border-top:3px solid var(--teal); border-radius:8px; padding:12px 14px;}
+ .kpi .n{font-size:23px; font-weight:800; color:var(--blue); line-height:1.1;}
+ .kpi .l{font-size:11px; color:var(--slate); text-transform:uppercase;
+ letter-spacing:.06em; margin-top:3px;}
+ .kpi .s{font-size:11px; color:var(--slate); margin-top:2px;}
+ .callout{background:var(--tint); border-left:4px solid var(--teal);
+ padding:12px 16px; border-radius:0 6px 6px 0; margin:14px 0;}
+ .callout.warn{border-left-color:var(--caution);
+ background:#fdf6ec;}
+ .callout .t{font-weight:700; color:var(--navy); margin-bottom:4px;}
+ table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px;}
+ th,td{border:1px solid var(--hair); padding:7px 10px; text-align:left;
+ vertical-align:top;}
+ thead th{background:var(--navy); color:#fff; font-weight:600;
+ border-color:var(--navy);}
+ tbody tr:nth-child(even){background:var(--tint);}
+ td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;}
+ tfoot td{font-weight:700; background:#e9f1f8;}
+ .rec-row{background:#e7f6ea !important;}
+ .badge{display:inline-block; padding:1px 9px; border-radius:20px;
+ font-size:11px; font-weight:700; color:#fff;}
+ .b-low{background:var(--pos);} .b-med{background:var(--caution);}
+ .b-high{background:var(--risk);}
+ .b-neu{background:var(--slate);}
+ .est{color:var(--caution); font-weight:700; font-size:11px;
+ border:1px solid var(--caution); border-radius:4px; padding:0 5px;}
+ .muted{color:var(--slate); font-size:12.5px;}
+ .footer{padding:16px 40px 30px; color:var(--slate); font-size:12px;
+ border-top:1px solid var(--hair);}
+ .two{display:flex; gap:22px; flex-wrap:wrap;}
+ .two>div{flex:1 1 260px;}
+ .chart-wrap{margin:16px 0 6px;}
+ .chart-title{font-size:12.5px; color:var(--slate); font-weight:600; margin:0 0 4px;}
+ .chart svg{width:100%; height:auto; max-width:620px; display:block;}
+ .axis-label{fill:var(--slate); font-size:11px;}
+ .val-label{fill:var(--ink); font-size:11px; font-weight:700;}
+ .bar{transform-box:fill-box;}
+ .bar.pos{transform-origin:center bottom;}
+ .bar.neg{transform-origin:center top;}
+ @media (prefers-reduced-motion: no-preference){
+ .bar{transform:scaleY(0); transition:transform .85s cubic-bezier(.22,1,.36,1);}
+ .chart.in .bar{transform:scaleY(1);}
+ .val-label{opacity:0; transition:opacity .4s ease .45s;}
+ .chart.in .val-label{opacity:1;}
+ }
+ @media print{
+ .bar{transform:none !important;}
+ .val-label{opacity:1 !important;}
+ }
+ @media print{
+ body{background:#fff;}
+ .doc{box-shadow:none; margin:0; max-width:none;}
+ h2{page-break-after:avoid;}
+ table,.kpi,.callout{page-break-inside:avoid;}
+ .no-print{display:none;}
+ }
+</style>
+</head>
+<body>
+<div class="doc">
+
+ <!-- 1. COVER -->
+ <div class="cover">
+ <p class="eyebrow">Business Case · Digital Transformation</p>
+ <h1>FinAI-Strat: Enterprise AI Strategy Portal</h1>
+ <p class="sub">An interactive portfolio management and evaluation portal that
+ centralizes AI initiative governance while enabling decentralized execution
+ through Domain Squads, giving leadership a clear, real-time view of the
+ enterprise AI portfolio.</p>
+ </div>
+ <div class="accentbar"></div>
+ <div class="meta">
+ <div><div class="k">Sponsor</div><div class="v">Enterprise Architecture &amp; Strategy Team</div></div>
+ <div><div class="k">Author</div><div class="v">Tanushree Arora</div></div>
+ <div><div class="k">Date</div><div class="v">6 July 2026</div></div>
+ <div><div class="k">Version</div><div class="v">1.0</div></div>
+ <div><div class="k">Status</div><div class="v"><span class="pill-status">Draft / For Review</span></div></div>
+ </div>
+
+ <main>
+
+ <!-- 2. EXECUTIVE SUMMARY -->
+ <h2><span class="num">1</span>Executive Summary</h2>
+ <p class="lead"><strong>Recommendation:</strong> Approve building the FinAI-Strat
+ portal, a lightweight Azure-hosted web application that gives the enterprise a
+ single place to intake, score, prioritize, and govern AI initiatives. It replaces
+ today's ad-hoc, siloed approach with a standardized evaluation framework backed by
+ a visual Prioritization Matrix and a federated Domain Squad operating model.</p>
+
+ <p><strong>The ask:</strong> Fund a one-time build of approximately
+ <strong>$85,000</strong> <span class="est">ESTIMATE</span>, plus roughly
+ $15,000 a year to run. The initial rollout should take three to four months.</p>
+
+ <div class="kpis">
+ <div class="kpi"><div class="n">~$85K</div><div class="l">One-time investment</div><div class="s">est., to be validated</div></div>
+ <div class="kpi"><div class="n">~$35K</div><div class="l">Net benefit / year</div><div class="s">est., steady state</div></div>
+ <div class="kpi"><div class="n">~$31K</div><div class="l">5-yr NPV @ 10%</div><div class="s">est.</div></div>
+ <div class="kpi"><div class="n">~3.0 yr</div><div class="l">Payback</div><div class="s">est.</div></div>
+ <div class="kpi"><div class="n">~22%</div><div class="l">IRR</div><div class="s">est.</div></div>
+ </div>
+
+ <p>The financial return is solid, but the strategic case is stronger still.
+ Right now the organization has no consistent way to compare AI bets against one
+ another, no shared scoring rubric, and no portfolio-level visibility. That means
+ good ideas compete on presentation skill rather than merit, low-value work absorbs
+ budget that could go further elsewhere, and compliance gaps stay hidden until
+ late in a project. FinAI-Strat fixes this by making every initiative pass through
+ the same transparent lens before resources are committed.</p>
+
+ <div class="callout warn">
+ <div class="t">⚠ Note on financials</div>
+ Every dollar figure here is a placeholder <strong>estimate</strong>
+ (marked <span class="est">ESTIMATE</span>), put in so the case reads as a finished
+ document. Before it goes forward for approval, swap them for real numbers: a build
+ quote, confirmed analyst rates, actual cycle-time measurements, the portfolio
+ spend figure, and the discount rate Finance wants used. <em>Section 14</em> lists
+ what still needs confirming.
+ </div>
+
+ <!-- 3. PROBLEM -->
+ <h2><span class="num">2</span>Problem &amp; Opportunity</h2>
+ <p>AI adoption is accelerating across the enterprise, but the way initiatives are
+ identified, evaluated, and funded has not kept pace. Today there is no single
+ intake channel, no shared scoring model, and no portfolio dashboard. Each business
+ unit tracks its own ideas in its own way, which creates several compounding
+ problems:</p>
+ <ul>
+ <li>Initiatives are <strong>siloed</strong>: two teams can pursue nearly identical
+ use cases without knowing it, duplicating effort and vendor spend.</li>
+ <li>Prioritization is <strong>subjective</strong>: without a common rubric,
+ steering committees weigh presentations and persuasion rather than comparable
+ scores for feasibility, value, data readiness, and security posture.</li>
+ <li>There is <strong>no portfolio view</strong>: leadership cannot see how much is
+ being invested in AI, where the bets sit on a value-vs-feasibility map, or
+ which initiatives are stalled.</li>
+ <li>Governance is <strong>inconsistent</strong>: security, compliance, and data-
+ readiness checks happen at different stages (or not at all), raising the risk
+ of a late-stage block or a production incident.</li>
+ </ul>
+
+ <h3>Who is affected</h3>
+ <div class="two">
+ <div>
+ <ul>
+ <li>Enterprise Architecture and Strategy (no consolidated view)</li>
+ <li>Steering committees (no apples-to-apples comparison)</li>
+ <li>Business-unit AI leads (no clear intake path)</li>
+ </ul>
+ </div>
+ <div>
+ <ul>
+ <li>Security and compliance teams (late visibility into AI risk)</li>
+ <li>Finance (cannot track or benchmark AI portfolio spend)</li>
+ <li>Domain Squads (no standardized way to propose and track work)</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="callout">
+ <div class="t">Cost of inaction (do-nothing baseline)</div>
+ Leave the current state in place and the enterprise continues to allocate AI
+ investment on an ad-hoc basis. Conservatively, <strong>15% of portfolio spend
+ goes to low-value or redundant initiatives</strong>
+ <span class="est">ESTIMATE</span> that a transparent prioritization process
+ would have deprioritized. On a $2M annual AI portfolio
+ <span class="est">ESTIMATE</span>, that is roughly $300K a year in misallocated
+ capital, plus the compounding cost of delayed high-value work, governance gaps,
+ and duplicated vendor contracts. The problem grows as the number of AI use cases
+ grows.
+ </div>
+
+ <!-- 4. STRATEGIC ALIGNMENT -->
+ <h2><span class="num">3</span>Strategic Alignment</h2>
+ <p>The initiative directly advances <strong>Digital Transformation &amp; Operational
+ Excellence</strong>, the sponsoring team's stated strategic pillar, and maps
+ cleanly onto <strong>Veralto Enterprise System (VES)</strong> principles:</p>
+ <ul>
+ <li><strong>Customer-centricity:</strong> a standardized scoring rubric ensures
+ every AI initiative is evaluated against real customer and business impact, not
+ internal politics.</li>
+ <li><strong>Continuous improvement / lean:</strong> the self-serve intake and
+ automated scoring cut waste from the evaluation cycle, reducing time-to-decision
+ and freeing committee bandwidth for higher-order review.</li>
+ <li><strong>Quality and problem-solving:</strong> built-in checks for data
+ readiness, security, and compliance catch issues early rather than after
+ significant capital has been spent.</li>
+ <li><strong>Standard work:</strong> the portal establishes a repeatable,
+ transparent process for AI initiative lifecycle management, from intake through
+ post-deployment review.</li>
+ </ul>
+ <p>FinAI-Strat also accelerates the broader goal of scaling AI adoption responsibly
+ by giving every business unit a clear, governed path from idea to production.</p>
+
+ <!-- 5. SOLUTION & SCOPE -->
+ <h2><span class="num">4</span>Proposed Solution &amp; Scope</h2>
+ <p>Build an interactive, web-based AI portfolio management portal hosted on Azure.
+ The portal provides a centralized governance framework with decentralized execution
+ through a hub-and-spoke "Domain Squad" operating model.</p>
+
+ <h3>Architecture</h3>
+ <table>
+ <thead><tr><th>Component</th><th>Technology</th><th>Purpose</th></tr></thead>
+ <tbody>
+ <tr><td>Frontend</td><td>Vanilla JavaScript, CSS, HTML (Static Web App)</td><td>Lightweight, modular UI with no heavy framework overhead</td></tr>
+ <tr><td>Identity</td><td>Azure Entra ID (SSO)</td><td>Enterprise authentication and role-based access</td></tr>
+ <tr><td>Data store</td><td>Azure Cosmos DB</td><td>Scalable, schema-flexible persistence for initiative records and scoring data</td></tr>
+ <tr><td>Hosting</td><td>Azure Static Web Apps</td><td>Low-cost, globally distributed hosting with built-in CI/CD</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Core capabilities</h3>
+ <ul>
+ <li><strong>Self-serve initiative intake:</strong> business units submit AI use
+ cases through a guided form that captures all evaluation dimensions upfront.</li>
+ <li><strong>Automated scoring engine:</strong> standardized evaluation across
+ technical feasibility, business value, data readiness, and security/compliance,
+ producing a composite score and a quadrant placement.</li>
+ <li><strong>Interactive Prioritization Matrix:</strong> a visual value-vs-
+ feasibility scatter plot that categorizes initiatives as Strategic Investments,
+ Quick Wins, Incremental Improvements, or Reconsider, making portfolio balance
+ immediately obvious.</li>
+ <li><strong>Domain Squad views:</strong> each squad sees its own initiative
+ pipeline, scores, and status while the Hub sees the full cross-enterprise
+ portfolio.</li>
+ <li><strong>Self-healing state management:</strong> schema versioning and
+ coordinate logic in the app layer automatically patch and resolve data conflicts,
+ reducing maintenance burden.</li>
+ </ul>
+
+ <h3>Governance framework</h3>
+ <p><strong>Hub-and-Spoke model:</strong> the centralized Hub (Enterprise Architecture
+ &amp; Strategy) provides the tooling, standards, and portfolio oversight. Decentralized
+ Domain Squads, led by business units, drive specific use-case development and
+ execution within those standards.</p>
+
+ <div class="two">
+ <div>
+ <h3>In scope</h3>
+ <ul>
+ <li>Initiative intake portal with guided submission</li>
+ <li>Scoring engine (feasibility, value, data, security)</li>
+ <li>Prioritization Matrix (interactive scatter plot)</li>
+ <li>Portfolio dashboard with filtering and drill-down</li>
+ <li>Domain Squad pipeline views</li>
+ <li>Azure Entra ID SSO integration</li>
+ <li>Cosmos DB backend with schema versioning</li>
+ <li>Role-based access (Hub admin, Squad lead, Viewer)</li>
+ </ul>
+ </div>
+ <div>
+ <h3>Out of scope (future phases)</h3>
+ <ul>
+ <li>Automated ML model deployment or MLOps integration</li>
+ <li>Financial system or ERP integration</li>
+ <li>Vendor procurement workflow automation</li>
+ <li>Advanced analytics or predictive portfolio modeling</li>
+ <li>Mobile-native application</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- 6. OPTIONS -->
+ <h2><span class="num">5</span>Options Considered</h2>
+ <table>
+ <thead><tr><th>Option</th><th>Pros</th><th>Cons</th><th class="num">Rel. cost</th></tr></thead>
+ <tbody>
+ <tr><td><strong>A. Do nothing</strong> (status quo)</td><td>No investment</td><td>Siloed tracking persists; no portfolio visibility; duplicated efforts continue; governance gaps widen as AI adoption scales</td><td class="num">-</td></tr>
+ <tr><td><strong>B. Shared spreadsheet / SharePoint tracker</strong></td><td>Low cost; familiar tooling; quick to set up</td><td>No scoring automation; no interactive visualization; version-control headaches; does not scale; no SSO-gated access control</td><td class="num">Low</td></tr>
+ <tr class="rec-row"><td><strong>C. Purpose-built Azure portal ✓ Recommended</strong></td><td>Standardized scoring; interactive Prioritization Matrix; federated Squad model; Azure-native (Entra ID, Cosmos DB); low TCO; modular vanilla-JS stack avoids framework lock-in</td><td>Requires development and UAT investment; change management needed for adoption</td><td class="num">Medium</td></tr>
+ <tr><td><strong>D. Commercial AI governance platform</strong></td><td>Vendor-supported; feature-rich; may include MLOps</td><td>High licensing cost; heavy integration; over-scoped for current need; slower time to value; vendor dependency</td><td class="num">High</td></tr>
+ </tbody>
+ </table>
+ <p><strong>Why C wins:</strong> it delivers exactly what the enterprise needs today
+ (intake, scoring, visualization, governance) on a stack Hach already runs, without
+ the cost, integration burden, or feature bloat of a commercial platform. The vanilla
+ JavaScript approach keeps the codebase simple and avoids framework churn, while
+ Azure Static Web Apps and Cosmos DB keep hosting and data costs minimal.</p>
+
+ <!-- 7. BENEFITS -->
+ <h2><span class="num">6</span>Benefits</h2>
+ <h3>Quantified <span class="est">ESTIMATE</span></h3>
+ <table>
+ <thead><tr><th>Benefit</th><th>Basis</th><th class="num">Annual value</th></tr></thead>
+ <tbody>
+ <tr><td>Intake-to-approval cycle time savings</td><td>30% reduction across ~20 initiatives/yr, each ~40 hrs of committee/analyst time @ $85/hr blended</td><td class="num">$20,400</td></tr>
+ <tr><td>Portfolio optimization (cost avoidance)</td><td>15% improvement in portfolio ROI on ~$2M AI spend; conservatively attribute 10% directly</td><td class="num">$30,000</td></tr>
+ </tbody>
+ <tfoot><tr><td colspan="2">Total quantified annual benefit (steady state)</td><td class="num">$50,400</td></tr></tfoot>
+ </table>
+
+ <h3>Qualitative / strategic</h3>
+ <div class="two">
+ <div><ul>
+ <li>Single source of truth for the enterprise AI portfolio</li>
+ <li>Transparent, auditable prioritization decisions</li>
+ <li>Reduced risk of duplicated AI investments</li>
+ <li>Earlier visibility into security and compliance gaps</li>
+ </ul></div>
+ <div><ul>
+ <li>Empowered Domain Squads with clear intake path</li>
+ <li>Executive-ready portfolio visualization</li>
+ <li>Scalable governance as AI adoption grows</li>
+ <li>Faster time-to-decision on high-value initiatives</li>
+ </ul></div>
+ </div>
+
+ <!-- 8. FINANCIAL ANALYSIS -->
+ <h2><span class="num">7</span>Financial Analysis</h2>
+ <p class="muted">Base case. Horizon: 5 years. Discount / hurdle rate:
+ <strong>10%</strong> <span class="est">[DISCOUNT RATE, confirm with Finance]</span>.
+ Year 1 assumes 60% benefit realization (adoption ramp).
+ All figures <span class="est">ESTIMATE</span>.</p>
+
+ <table>
+ <thead><tr>
+ <th>Cash flow ($)</th><th class="num">Year 0</th><th class="num">Yr 1</th>
+ <th class="num">Yr 2</th><th class="num">Yr 3</th><th class="num">Yr 4</th><th class="num">Yr 5</th>
+ </tr></thead>
+ <tbody>
+ <tr><td>Implementation (one-time)</td><td class="num">(85,000)</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+ <tr><td>Gross annual benefit</td><td class="num">-</td><td class="num">30,240</td><td class="num">50,400</td><td class="num">50,400</td><td class="num">50,400</td><td class="num">50,400</td></tr>
+ <tr><td>Recurring cost</td><td class="num">-</td><td class="num">(15,000)</td><td class="num">(15,000)</td><td class="num">(15,000)</td><td class="num">(15,000)</td><td class="num">(15,000)</td></tr>
+ <tr><td><strong>Net cash flow</strong></td><td class="num">(85,000)</td><td class="num">15,240</td><td class="num">35,400</td><td class="num">35,400</td><td class="num">35,400</td><td class="num">35,400</td></tr>
+ <tr><td>Cumulative net</td><td class="num">(85,000)</td><td class="num">(69,760)</td><td class="num">(34,360)</td><td class="num">1,040</td><td class="num">36,440</td><td class="num">71,840</td></tr>
+ <tr><td>Discount factor @10%</td><td class="num">1.000</td><td class="num">0.909</td><td class="num">0.826</td><td class="num">0.751</td><td class="num">0.683</td><td class="num">0.621</td></tr>
+ <tr><td>Present value</td><td class="num">(85,000)</td><td class="num">13,853</td><td class="num">29,240</td><td class="num">26,585</td><td class="num">24,178</td><td class="num">21,983</td></tr>
+ </tbody>
+ <tfoot><tr><td>Cumulative PV (NPV build)</td><td class="num">(85,000)</td><td class="num">(71,147)</td><td class="num">(41,907)</td><td class="num">(15,322)</td><td class="num">8,856</td><td class="num">30,839</td></tr></tfoot>
+ </table>
+
+ <div class="chart-wrap">
+ <p class="chart-title">Cumulative net cash flow by year ($000s), turns positive partway through Year 3</p>
+ <div class="chart" role="img" aria-label="Cumulative net cash flow by year, in thousands of dollars: Year 0 minus 85, Year 1 minus 70, Year 2 minus 34, Year 3 positive 1, Year 4 positive 36, Year 5 positive 72.">
+ <svg viewBox="0 0 620 264" xmlns="http://www.w3.org/2000/svg">
+ <line x1="55" y1="111.7" x2="600" y2="111.7" stroke="#52606D" stroke-width="1" stroke-dasharray="3 3"/>
+ <text class="axis-label" x="46" y="115" text-anchor="end">0</text>
+ <!-- Year 0: -85 -->
+ <rect class="bar neg" x="82" y="111.7" width="46" height="108.3" rx="3" fill="#C77700" style="transition-delay:.00s"/>
+ <!-- Year 1: -70 -->
+ <rect class="bar neg" x="172" y="111.7" width="46" height="89.2" rx="3" fill="#C77700" style="transition-delay:.06s"/>
+ <!-- Year 2: -34 -->
+ <rect class="bar neg" x="262" y="111.7" width="46" height="43.3" rx="3" fill="#C77700" style="transition-delay:.12s"/>
+ <!-- Year 3: +1 -->
+ <rect class="bar pos" x="352" y="110.4" width="46" height="1.3" rx="1" fill="#00A9CE" style="transition-delay:.18s"/>
+ <!-- Year 4: +36 -->
+ <rect class="bar pos" x="442" y="65.8" width="46" height="45.9" rx="3" fill="#00A9CE" style="transition-delay:.24s"/>
+ <!-- Year 5: +72 -->
+ <rect class="bar pos" x="532" y="20.0" width="46" height="91.7" rx="3" fill="#00A9CE" style="transition-delay:.30s"/>
+ <text class="val-label" x="105" y="233" text-anchor="middle">-85</text>
+ <text class="val-label" x="195" y="214" text-anchor="middle">-70</text>
+ <text class="val-label" x="285" y="168" text-anchor="middle">-34</text>
+ <text class="val-label" x="375" y="105" text-anchor="middle">1</text>
+ <text class="val-label" x="465" y="60" text-anchor="middle">36</text>
+ <text class="val-label" x="555" y="15" text-anchor="middle">72</text>
+ <text class="axis-label" x="105" y="252" text-anchor="middle">Yr 0</text>
+ <text class="axis-label" x="195" y="252" text-anchor="middle">Yr 1</text>
+ <text class="axis-label" x="285" y="252" text-anchor="middle">Yr 2</text>
+ <text class="axis-label" x="375" y="252" text-anchor="middle">Yr 3</text>
+ <text class="axis-label" x="465" y="252" text-anchor="middle">Yr 4</text>
+ <text class="axis-label" x="555" y="252" text-anchor="middle">Yr 5</text>
+ </svg>
+ </div>
+ </div>
+
+ <div class="kpis">
+ <div class="kpi"><div class="n">$30.8K</div><div class="l">NPV (5-yr, 10%)</div></div>
+ <div class="kpi"><div class="n">~22%</div><div class="l">IRR</div></div>
+ <div class="kpi"><div class="n">3.0 yr</div><div class="l">Simple payback</div></div>
+ <div class="kpi"><div class="n">~3.6 yr</div><div class="l">Discounted payback</div></div>
+ <div class="kpi"><div class="n">85%</div><div class="l">5-yr ROI</div></div>
+ </div>
+ <p class="muted">ROI = (5-yr net cash flows $157K less investment $85K) / $85K = 85%.
+ Payback: investment recovered early in Year 3. Year 1 benefit is lower (60% of
+ steady-state) due to the adoption ramp.</p>
+
+ <h3>Sensitivity / scenario analysis</h3>
+ <table>
+ <thead><tr>
+ <th>Scenario</th><th class="num">Investment</th><th class="num">Net benefit/yr</th>
+ <th class="num">NPV (10%,5yr)</th><th class="num">IRR</th><th class="num">Payback</th>
+ </tr></thead>
+ <tbody>
+ <tr><td>Conservative</td><td class="num">$95,000</td><td class="num">$22,000</td><td class="num">($11,600)</td><td class="num">~5%</td><td class="num">4.3 yr</td></tr>
+ <tr class="rec-row"><td><strong>Base</strong></td><td class="num">$85,000</td><td class="num">$35,400</td><td class="num">$30,800</td><td class="num">~22%</td><td class="num">3.0 yr</td></tr>
+ <tr><td>Optimistic</td><td class="num">$65,000</td><td class="num">$55,000</td><td class="num">$143,500</td><td class="num">~80%</td><td class="num">1.2 yr</td></tr>
+ </tbody>
+ </table>
+
+ <div class="chart-wrap">
+ <p class="chart-title">NPV by scenario ($000s), Base case highlighted</p>
+ <div class="chart" role="img" aria-label="Net present value by scenario, in thousands of dollars: Conservative minus 12, Base 31, Optimistic 144.">
+ <svg viewBox="0 0 620 264" xmlns="http://www.w3.org/2000/svg">
+ <line x1="55" y1="204.6" x2="600" y2="204.6" stroke="#52606D" stroke-width="1" stroke-dasharray="3 3"/>
+ <text class="axis-label" x="46" y="208" text-anchor="end">0</text>
+ <rect class="bar neg" x="105" y="204.6" width="90" height="15.4" rx="3" fill="#C77700" style="transition-delay:.00s"/>
+ <rect class="bar pos" x="285" y="164.9" width="90" height="39.7" rx="3" fill="#00A9CE" style="transition-delay:.08s"/>
+ <rect class="bar pos" x="465" y="20.0" width="90" height="184.6" rx="3" fill="#00539B" style="transition-delay:.16s"/>
+ <text class="val-label" x="150" y="234" text-anchor="middle">-12</text>
+ <text class="val-label" x="330" y="159" text-anchor="middle">31</text>
+ <text class="val-label" x="510" y="15" text-anchor="middle">144</text>
+ <text class="axis-label" x="150" y="252" text-anchor="middle">Conservative</text>
+ <text class="axis-label" x="330" y="252" text-anchor="middle">Base</text>
+ <text class="axis-label" x="510" y="252" text-anchor="middle">Optimistic</text>
+ </svg>
+ </div>
+ </div>
+ <p class="muted"><strong>What moves the result most:</strong> the adoption rate
+ (how quickly Domain Squads use the portal for all new initiatives), the actual
+ build cost, and the size of the AI portfolio spend that gets reallocated through
+ better prioritization. The base and optimistic cases are comfortably positive.
+ The conservative case assumes higher build cost combined with lower adoption and
+ a smaller attributed benefit, which pushes NPV slightly negative, so confirming
+ actual build cost and adoption commitment is the first priority.</p>
+
+ <!-- 9. RISKS -->
+ <h2><span class="num">8</span>Risks &amp; Mitigations</h2>
+ <table>
+ <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
+ <tbody>
+ <tr><td>Low adoption by business units / Domain Squads</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-high">High</span></td><td>Highly visual, intuitive UI (interactive Prioritization Matrix); federated model empowers squads rather than imposing top-down mandates; executive sponsorship of the intake process</td></tr>
+ <tr><td>Data collisions or stale browser state</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Self-healing coordinate logic and schema versioning in the app layer (evaluator.js) automatically patches and resolves conflicts</td></tr>
+ <tr><td>Security exposure via the portal</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-high">High</span></td><td>Azure Entra ID SSO with role-based access; no sensitive data stored beyond initiative metadata; Static Web App security defaults</td></tr>
+ <tr><td>Scope creep from Domain Squad feature requests</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Clear in-scope/out-of-scope boundaries; modular codebase supports phased enhancements without destabilizing the core</td></tr>
+ <tr><td>Azure service costs exceed forecast</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-low">Low</span></td><td>Static Web Apps and Cosmos DB consumption tier are inherently low-cost; usage monitoring with Azure Cost Management alerts</td></tr>
+ <tr><td>Scoring rubric not accepted by all stakeholders</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Co-develop rubric with cross-functional representatives during Discovery phase; allow configurable weight adjustments</td></tr>
+ </tbody>
+ </table>
+
+ <!-- 10. IMPLEMENTATION -->
+ <h2><span class="num">9</span>Implementation Plan</h2>
+ <table>
+ <thead><tr><th>Phase</th><th>Key activities</th><th>Duration <span class="est">EST</span></th></tr></thead>
+ <tbody>
+ <tr><td>1. Discovery &amp; architecture</td><td>Finalize scoring rubric with stakeholders; confirm Azure architecture; define data model; identify pilot Domain Squads</td><td>2-3 wks</td></tr>
+ <tr><td>2. Core portal build</td><td>Intake forms, Entra ID SSO, Cosmos DB schema, state management, navigation framework</td><td>4-6 wks</td></tr>
+ <tr><td>3. Scoring engine &amp; visualization</td><td>Automated scoring calculations, Prioritization Matrix, portfolio dashboard, Domain Squad views</td><td>3-4 wks</td></tr>
+ <tr><td>4. UAT &amp; pilot</td><td>Pilot with 2-3 Domain Squads; validate scoring, usability, and data integrity; iterate on feedback</td><td>2-3 wks</td></tr>
+ <tr><td>5. Go-live &amp; onboarding</td><td>Full rollout; squad onboarding sessions; documentation; hand over to run team</td><td>1-2 wks</td></tr>
+ </tbody>
+ </table>
+ <p class="muted">Indicative total: ~3-4 months, dependent on stakeholder availability
+ for rubric design and pilot participation.</p>
+
+ <!-- 11. RESOURCE & ORG -->
+ <h2><span class="num">10</span>Resource &amp; Organizational Impact</h2>
+ <ul>
+ <li><strong>People:</strong> 1-2 developers (vanilla JS / Azure); architecture
+ sponsor for design decisions; Domain Squad champions for pilot and feedback;
+ security/compliance reviewer for Entra ID and data model sign-off.</li>
+ <li><strong>Process change:</strong> AI initiative proposals shift from ad-hoc
+ emails and slide decks to a structured portal submission. Steering committees
+ review pre-scored, ranked portfolios instead of raw pitches. Domain Squads gain
+ a self-service pipeline view.</li>
+ <li><strong>Change management:</strong> onboarding sessions for each Domain Squad;
+ executive communications positioning the portal as an enabler (not a gate);
+ quick-reference guides and in-app help.</li>
+ <li><strong>Skills:</strong> minimal new technical skills for end users. Squad
+ leads need a short walkthrough on submission and scoring interpretation. Hub
+ admins need training on rubric configuration and portfolio management.</li>
+ </ul>
+
+ <!-- 12. DEPENDENCIES -->
+ <h2><span class="num">11</span>Dependencies &amp; Constraints</h2>
+ <ul>
+ <li>Azure subscription with Static Web Apps and Cosmos DB provisioning rights</li>
+ <li>Azure Entra ID tenant access and admin consent for SSO app registration</li>
+ <li>Cross-functional agreement on the scoring rubric weights and thresholds</li>
+ <li>At least 2-3 Domain Squads willing to participate in the pilot phase</li>
+ <li>Executive mandate (or strong encouragement) that new AI initiatives use the
+ portal intake process</li>
+ <li>Portal scope is limited to intake, scoring, and portfolio visualization;
+ downstream MLOps and financial integration are future phases</li>
+ </ul>
+
+ <!-- 13. SUCCESS METRICS -->
+ <h2><span class="num">12</span>Success Metrics / KPIs</h2>
+ <table>
+ <thead><tr><th>KPI</th><th>Target</th><th>Measurement</th></tr></thead>
+ <tbody>
+ <tr><td>Intake-to-approval cycle time</td><td>↓ 30% vs current baseline</td><td>Timestamp comparison: submission date to approval date, measured quarterly</td></tr>
+ <tr><td>Portfolio ROI improvement</td><td>↑ 15% (attributed via prioritization quality)</td><td>Annual portfolio review comparing realized value vs investment by quadrant</td></tr>
+ <tr><td>Portal adoption rate</td><td>&gt;80% of new AI initiatives submitted through portal</td><td>Portal submission count vs known AI initiatives, measured monthly</td></tr>
+ <tr><td>Domain Squad onboarding</td><td>All identified squads active within 6 months</td><td>Squad login and submission activity in portal analytics</td></tr>
+ <tr><td>Scoring coverage</td><td>100% of initiatives scored before steering review</td><td>Audit of portal records prior to each steering meeting</td></tr>
+ <tr><td>Duplicate initiative identification</td><td>Flag overlapping use cases before approval</td><td>Count of duplicates caught and consolidated, measured quarterly</td></tr>
+ </tbody>
+ </table>
+
+ <!-- 14. RECOMMENDATION -->
+ <h2><span class="num">13</span>Recommendation &amp; Next Steps</h2>
+ <p><strong>Recommendation:</strong> Approve Option C and build the FinAI-Strat
+ portal. It gives the enterprise what it currently lacks: a transparent, standardized
+ way to intake, score, and prioritize AI initiatives with portfolio-level visibility.
+ The lightweight Azure architecture keeps costs low, the federated Domain Squad model
+ drives adoption from the business side, and the modular codebase supports phased
+ enhancement without rearchitecting. The financial return is positive in the base
+ case, and the strategic value of governing AI investment coherently is worth at
+ least as much as the measured dollar savings.</p>
+ <ol>
+ <li>Confirm the financial inputs and replace the estimates (build quote, analyst
+ rates, actual cycle-time data, portfolio spend figure, discount rate).</li>
+ <li>Secure sponsor approval and funding for the estimated ~$85K one-time
+ investment.</li>
+ <li>Identify 2-3 pilot Domain Squads and confirm their participation.</li>
+ <li>Convene a cross-functional working session to co-develop the scoring rubric.</li>
+ <li>Kick off Phase 1 (Discovery &amp; Architecture) with confirmed Azure
+ subscription access and Entra ID admin consent.</li>
+ </ol>
+
+ <!-- 15. ASSUMPTIONS -->
+ <h2><span class="num">14</span>Assumptions &amp; Open Questions</h2>
+ <h3>Assumptions made (to validate)</h3>
+ <ul>
+ <li>Enterprise AI portfolio spend is approximately $2M annually.</li>
+ <li>Roughly 20 AI initiatives per year pass through the evaluation process.</li>
+ <li>Average intake-to-approval cycle involves ~40 hours of committee/analyst
+ time per initiative at a blended rate of ~$85/hour.</li>
+ <li>A 30% cycle-time reduction is achievable with self-serve intake and
+ automated scoring.</li>
+ <li>15% of current portfolio spend goes to low-value or redundant work that
+ better prioritization would redirect; 10% of that saving is directly
+ attributable to the portal.</li>
+ <li>One-time implementation cost is approximately $85,000; recurring is
+ approximately $15,000/year.</li>
+ <li>Year 1 realizes 60% of steady-state benefits due to adoption ramp.</li>
+ <li>5-year analysis horizon; 10% discount/hurdle rate.</li>
+ <li>Hach already has (or will provision) an Azure subscription with Static Web
+ Apps and Cosmos DB access.</li>
+ <li>Azure Entra ID licensing covers SSO for the portal without incremental
+ license cost.</li>
+ </ul>
+ <h3>Open questions</h3>
+ <ul>
+ <li>Actual implementation cost: internal build estimate or vendor quote?</li>
+ <li>Confirmed blended analyst/committee hourly rate?</li>
+ <li>Current average intake-to-approval cycle time (to baseline the 30% target)?</li>
+ <li>Actual annual AI portfolio spend figure?</li>
+ <li>Finance-approved discount/hurdle rate?</li>
+ <li>Azure Entra ID: is the app registration process self-service or does it
+ require a CAB/change request?</li>
+ <li>Cosmos DB tier: consumption (serverless) vs provisioned throughput?</li>
+ <li>Which Domain Squads will participate in the pilot?</li>
+ <li>Is there an existing executive mandate for AI initiative governance, or does
+ that need to be established as part of this effort?</li>
+ </ul>
+
+ </main>
+
+ <div class="footer">
+ Confidential, internal use. Generated with the reusable Business Case Generator
+ prompt. Financial figures are illustrative estimates pending validated inputs.
+ Hach / Veralto brand palette applied (approximate; replace with official hex codes if available).
+ </div>
+
+</div>
+<script>
+(function(){
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var nums = Array.prototype.slice.call(document.querySelectorAll('.kpi .n'));
+ nums.forEach(function(el){
+ var m = el.textContent.trim().match(/^([^\d-]*)(-?[\d,]*\.?\d+)(.*)$/);
+ if(!m){ return; }
+ el.dataset.prefix = m[1]; el.dataset.suffix = m[3];
+ el.dataset.target = m[2].replace(/,/g,'');
+ el.dataset.decimals = (m[2].split('.')[1] || '').length;
+ if(!reduce){
+ var d = parseInt(el.dataset.decimals, 10);
+ el.textContent = m[1] + (0).toFixed(d) + m[3];
+ }
+ });
+ function countUp(el){
+ var target = parseFloat(el.dataset.target);
+ var dec = parseInt(el.dataset.decimals, 10);
+ var pre = el.dataset.prefix, suf = el.dataset.suffix, dur = 1000, start = null;
+ function step(ts){
+ if(start === null){ start = ts; }
+ var p = Math.min((ts - start) / dur, 1);
+ var v = target * (1 - Math.pow(1 - p, 3));
+ el.textContent = pre + v.toFixed(dec) + suf;
+ if(p < 1){ requestAnimationFrame(step); }
+ else { el.textContent = pre + target.toFixed(dec) + suf; }
+ }
+ requestAnimationFrame(step);
+ }
+ if('IntersectionObserver' in window && !reduce){
+ var io = new IntersectionObserver(function(entries){
+ entries.forEach(function(e){
+ if(!e.isIntersecting){ return; }
+ var t = e.target;
+ if(t.classList.contains('chart')){ t.classList.add('in'); }
+ else if(t.classList.contains('n')){ countUp(t); }
+ io.unobserve(t);
+ });
+ }, {threshold: 0.35});
+ document.querySelectorAll('.chart').forEach(function(c){ io.observe(c); });
+ nums.forEach(function(n){ io.observe(n); });
+ } else {
+ document.querySelectorAll('.chart').forEach(function(c){ c.classList.add('in'); });
+ }
+})();
+</script>
+</body>
+</html>
