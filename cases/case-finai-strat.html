@@ -131,13 +131,15 @@
 
  <!-- 2. EXECUTIVE SUMMARY -->
  <h2><span class="num">1</span>Executive Summary</h2>
- <p class="lead"><strong>Recommendation:</strong> Approve building the FinAI-Strat
- portal, a lightweight Azure-hosted web application that gives the enterprise a
- single place to intake, score, prioritize, and govern AI initiatives. It replaces
- today's ad-hoc, siloed approach with a standardized evaluation framework backed by
- a visual Prioritization Matrix and a federated Domain Squad operating model.</p>
+ <p class="lead"><strong>Recommendation:</strong> Approve building FinAI-Strat,
+ a web portal where teams submit AI initiative proposals, a scoring engine rates
+ each one on feasibility, business value, data readiness, and security, and
+ leadership sees the full portfolio on a single Prioritization Matrix that sorts
+ initiatives into Strategic Investments, Quick Wins, Incremental Improvements, or
+ Reconsider. Right now AI initiatives are siloed, difficult to prioritize
+ objectively, and lack a unified governance model. This fixes that.</p>
 
- <p><strong>The ask:</strong> Fund a one-time build of approximately
+ <p><strong>The ask:</strong> Fund a one-time build of about
  <strong>$85,000</strong> <span class="est">ESTIMATE</span>, plus roughly
  $15,000 a year to run. The initial rollout should take three to four months.</p>
 
@@ -149,13 +151,13 @@
  <div class="kpi"><div class="n">~22%</div><div class="l">IRR</div><div class="s">est.</div></div>
  </div>
 
- <p>The financial return is solid, but the strategic case is stronger still.
- Right now the organization has no consistent way to compare AI bets against one
- another, no shared scoring rubric, and no portfolio-level visibility. That means
- good ideas compete on presentation skill rather than merit, low-value work absorbs
- budget that could go further elsewhere, and compliance gaps stay hidden until
- late in a project. FinAI-Strat fixes this by making every initiative pass through
- the same transparent lens before resources are committed.</p>
+ <p>The dollars are worth tracking, but the bigger reason to do this is
+ operational. Today each business unit tracks AI ideas its own way, nobody can
+ compare them side by side, and duplicated work goes unnoticed until money has
+ already been spent. FinAI-Strat puts every proposal through the same scoring
+ rubric, plots them on a value-vs-feasibility matrix, and gives Domain Squads
+ their own pipeline view so they stay in control of execution while the Hub
+ keeps the portfolio in balance.</p>
 
  <div class="callout warn">
  <div class="t">⚠ Note on financials</div>
@@ -169,23 +171,21 @@
 
  <!-- 3. PROBLEM -->
  <h2><span class="num">2</span>Problem &amp; Opportunity</h2>
- <p>AI adoption is accelerating across the enterprise, but the way initiatives are
- identified, evaluated, and funded has not kept pace. Today there is no single
- intake channel, no shared scoring model, and no portfolio dashboard. Each business
- unit tracks its own ideas in its own way, which creates several compounding
- problems:</p>
+ <p>AI initiatives are siloed, difficult to prioritize objectively, and lack a
+ unified governance model. That leads to duplicated efforts and suboptimal
+ resource allocation. Specifically:</p>
  <ul>
- <li>Initiatives are <strong>siloed</strong>: two teams can pursue nearly identical
- use cases without knowing it, duplicating effort and vendor spend.</li>
- <li>Prioritization is <strong>subjective</strong>: without a common rubric,
- steering committees weigh presentations and persuasion rather than comparable
- scores for feasibility, value, data readiness, and security posture.</li>
- <li>There is <strong>no portfolio view</strong>: leadership cannot see how much is
- being invested in AI, where the bets sit on a value-vs-feasibility map, or
- which initiatives are stalled.</li>
- <li>Governance is <strong>inconsistent</strong>: security, compliance, and data-
- readiness checks happen at different stages (or not at all), raising the risk
- of a late-stage block or a production incident.</li>
+ <li><strong>Siloed tracking:</strong> each business unit keeps its own list of AI
+ ideas. Two teams can pursue nearly the same use case without knowing it.</li>
+ <li><strong>No common scoring:</strong> steering committees compare slide decks,
+ not comparable scores. There is no shared rubric for feasibility, value, data
+ readiness, or security.</li>
+ <li><strong>No portfolio view:</strong> leadership cannot see the full set of AI
+ investments on one screen, which initiatives overlap, or which ones are
+ stalled.</li>
+ <li><strong>Inconsistent governance:</strong> security and compliance checks
+ happen at different stages, or not at all. Problems surface late, after
+ budget has been committed.</li>
  </ul>
 
  <h3>Who is affected</h3>
@@ -193,95 +193,89 @@
  <div>
  <ul>
  <li>Enterprise Architecture and Strategy (no consolidated view)</li>
- <li>Steering committees (no apples-to-apples comparison)</li>
+ <li>Steering committees (no way to compare initiatives side by side)</li>
  <li>Business-unit AI leads (no clear intake path)</li>
  </ul>
  </div>
  <div>
  <ul>
- <li>Security and compliance teams (late visibility into AI risk)</li>
- <li>Finance (cannot track or benchmark AI portfolio spend)</li>
- <li>Domain Squads (no standardized way to propose and track work)</li>
+ <li>Security and compliance (late visibility into AI risk)</li>
+ <li>Finance (cannot track AI portfolio spend)</li>
+ <li>Domain Squads (no standard way to propose and track work)</li>
  </ul>
  </div>
  </div>
 
  <div class="callout">
  <div class="t">Cost of inaction (do-nothing baseline)</div>
- Leave the current state in place and the enterprise continues to allocate AI
- investment on an ad-hoc basis. Conservatively, <strong>15% of portfolio spend
+ Without a shared prioritization process, roughly <strong>15% of portfolio spend
  goes to low-value or redundant initiatives</strong>
- <span class="est">ESTIMATE</span> that a transparent prioritization process
- would have deprioritized. On a $2M annual AI portfolio
- <span class="est">ESTIMATE</span>, that is roughly $300K a year in misallocated
- capital, plus the compounding cost of delayed high-value work, governance gaps,
- and duplicated vendor contracts. The problem grows as the number of AI use cases
- grows.
+ <span class="est">ESTIMATE</span> that would have been deprioritized with
+ better visibility. On a $2M annual AI portfolio
+ <span class="est">ESTIMATE</span>, that is about $300K a year in misallocated
+ capital. Add duplicated vendor contracts, delayed high-value work, and
+ governance gaps that only get worse as AI use cases multiply.
  </div>
 
  <!-- 4. STRATEGIC ALIGNMENT -->
  <h2><span class="num">3</span>Strategic Alignment</h2>
- <p>The initiative directly advances <strong>Digital Transformation &amp; Operational
- Excellence</strong>, the sponsoring team's stated strategic pillar, and maps
- cleanly onto <strong>Veralto Enterprise System (VES)</strong> principles:</p>
+ <p>This falls under <strong>Digital Transformation &amp; Operational
+ Excellence</strong> and lines up with <strong>Veralto Enterprise System
+ (VES)</strong> principles:</p>
  <ul>
- <li><strong>Customer-centricity:</strong> a standardized scoring rubric ensures
- every AI initiative is evaluated against real customer and business impact, not
- internal politics.</li>
- <li><strong>Continuous improvement / lean:</strong> the self-serve intake and
- automated scoring cut waste from the evaluation cycle, reducing time-to-decision
- and freeing committee bandwidth for higher-order review.</li>
- <li><strong>Quality and problem-solving:</strong> built-in checks for data
- readiness, security, and compliance catch issues early rather than after
- significant capital has been spent.</li>
- <li><strong>Standard work:</strong> the portal establishes a repeatable,
- transparent process for AI initiative lifecycle management, from intake through
- post-deployment review.</li>
+ <li><strong>Customer-centricity:</strong> the scoring rubric evaluates every
+ initiative against real customer and business impact, not who presents it
+ best.</li>
+ <li><strong>Continuous improvement / lean:</strong> self-serve intake and
+ automated scoring remove manual steps from the evaluation cycle. Committees
+ spend time reviewing, not collecting information.</li>
+ <li><strong>Quality and problem-solving:</strong> data readiness, security, and
+ compliance checks are part of the intake form, not an afterthought.</li>
+ <li><strong>Standard work:</strong> every AI initiative follows the same path
+ from submission to scoring to steering review.</li>
  </ul>
- <p>FinAI-Strat also accelerates the broader goal of scaling AI adoption responsibly
- by giving every business unit a clear, governed path from idea to production.</p>
 
  <!-- 5. SOLUTION & SCOPE -->
  <h2><span class="num">4</span>Proposed Solution &amp; Scope</h2>
- <p>Build an interactive, web-based AI portfolio management portal hosted on Azure.
- The portal provides a centralized governance framework with decentralized execution
- through a hub-and-spoke "Domain Squad" operating model.</p>
+ <p>Build a web portal on Azure where teams submit AI initiative proposals, a
+ scoring engine evaluates them, and leadership sees the results on an interactive
+ Prioritization Matrix. The portal runs a hub-and-spoke governance model:
+ centralized standards, decentralized execution through Domain Squads.</p>
 
  <h3>Architecture</h3>
  <table>
  <thead><tr><th>Component</th><th>Technology</th><th>Purpose</th></tr></thead>
  <tbody>
- <tr><td>Frontend</td><td>Vanilla JavaScript, CSS, HTML (Static Web App)</td><td>Lightweight, modular UI with no heavy framework overhead</td></tr>
- <tr><td>Identity</td><td>Azure Entra ID (SSO)</td><td>Enterprise authentication and role-based access</td></tr>
- <tr><td>Data store</td><td>Azure Cosmos DB</td><td>Scalable, schema-flexible persistence for initiative records and scoring data</td></tr>
- <tr><td>Hosting</td><td>Azure Static Web Apps</td><td>Low-cost, globally distributed hosting with built-in CI/CD</td></tr>
+ <tr><td>Frontend</td><td>Vanilla JavaScript, CSS, HTML</td><td>Modular, no framework overhead. Runs as an Azure Static Web App.</td></tr>
+ <tr><td>Identity</td><td>Azure Entra ID (SSO)</td><td>Enterprise login and role-based access</td></tr>
+ <tr><td>Data store</td><td>Azure Cosmos DB</td><td>Stores initiative records and scoring data. Schema-flexible.</td></tr>
+ <tr><td>Hosting</td><td>Azure Static Web Apps</td><td>Low-cost hosting with built-in CI/CD</td></tr>
  </tbody>
  </table>
 
  <h3>Core capabilities</h3>
  <ul>
- <li><strong>Self-serve initiative intake:</strong> business units submit AI use
- cases through a guided form that captures all evaluation dimensions upfront.</li>
- <li><strong>Automated scoring engine:</strong> standardized evaluation across
- technical feasibility, business value, data readiness, and security/compliance,
- producing a composite score and a quadrant placement.</li>
- <li><strong>Interactive Prioritization Matrix:</strong> a visual value-vs-
- feasibility scatter plot that categorizes initiatives as Strategic Investments,
- Quick Wins, Incremental Improvements, or Reconsider, making portfolio balance
- immediately obvious.</li>
- <li><strong>Domain Squad views:</strong> each squad sees its own initiative
- pipeline, scores, and status while the Hub sees the full cross-enterprise
- portfolio.</li>
+ <li><strong>Self-serve intake:</strong> business units submit AI use cases through
+ a guided form. All scoring dimensions are captured upfront.</li>
+ <li><strong>Scoring engine:</strong> each initiative is rated on technical
+ feasibility, business value, data readiness, and security/compliance. The engine
+ produces a composite score and places the initiative in a quadrant.</li>
+ <li><strong>Prioritization Matrix:</strong> a value-vs-feasibility scatter plot
+ that sorts initiatives into four categories: Strategic Investments, Quick Wins,
+ Incremental Improvements, or Reconsider. You can see the portfolio balance at
+ a glance.</li>
+ <li><strong>Domain Squad views:</strong> each squad sees its own pipeline and
+ scores. The Hub sees the full portfolio across all squads.</li>
  <li><strong>Self-healing state management:</strong> schema versioning and
- coordinate logic in the app layer automatically patch and resolve data conflicts,
- reducing maintenance burden.</li>
+ coordinate logic in the app automatically patch data conflicts, so the portal
+ does not need constant maintenance.</li>
  </ul>
 
  <h3>Governance framework</h3>
- <p><strong>Hub-and-Spoke model:</strong> the centralized Hub (Enterprise Architecture
- &amp; Strategy) provides the tooling, standards, and portfolio oversight. Decentralized
- Domain Squads, led by business units, drive specific use-case development and
- execution within those standards.</p>
+ <p><strong>Hub-and-Spoke:</strong> the Hub (Enterprise Architecture &amp; Strategy)
+ owns the tooling, scoring standards, and portfolio oversight. Domain Squads, led
+ by business units, own execution. They run their own AI use cases but follow
+ the same scoring rubric and intake process.</p>
 
  <div class="two">
  <div>
@@ -314,17 +308,17 @@
  <table>
  <thead><tr><th>Option</th><th>Pros</th><th>Cons</th><th class="num">Rel. cost</th></tr></thead>
  <tbody>
- <tr><td><strong>A. Do nothing</strong> (status quo)</td><td>No investment</td><td>Siloed tracking persists; no portfolio visibility; duplicated efforts continue; governance gaps widen as AI adoption scales</td><td class="num">-</td></tr>
- <tr><td><strong>B. Shared spreadsheet / SharePoint tracker</strong></td><td>Low cost; familiar tooling; quick to set up</td><td>No scoring automation; no interactive visualization; version-control headaches; does not scale; no SSO-gated access control</td><td class="num">Low</td></tr>
- <tr class="rec-row"><td><strong>C. Purpose-built Azure portal ✓ Recommended</strong></td><td>Standardized scoring; interactive Prioritization Matrix; federated Squad model; Azure-native (Entra ID, Cosmos DB); low TCO; modular vanilla-JS stack avoids framework lock-in</td><td>Requires development and UAT investment; change management needed for adoption</td><td class="num">Medium</td></tr>
- <tr><td><strong>D. Commercial AI governance platform</strong></td><td>Vendor-supported; feature-rich; may include MLOps</td><td>High licensing cost; heavy integration; over-scoped for current need; slower time to value; vendor dependency</td><td class="num">High</td></tr>
+ <tr><td><strong>A. Do nothing</strong> (status quo)</td><td>No investment</td><td>Siloed tracking continues. No portfolio visibility. Duplicated efforts get worse as AI adoption grows.</td><td class="num">-</td></tr>
+ <tr><td><strong>B. Shared spreadsheet / SharePoint tracker</strong></td><td>Low cost, familiar, quick to set up</td><td>No scoring automation or interactive visualization. Version control is manual. Does not scale. No SSO.</td><td class="num">Low</td></tr>
+ <tr class="rec-row"><td><strong>C. Purpose-built Azure portal ✓ Recommended</strong></td><td>Scoring engine with Prioritization Matrix. Domain Squad model. Azure-native (Entra ID, Cosmos DB). Low TCO. Modular vanilla-JS stack, no framework lock-in.</td><td>Requires development and UAT investment. Needs change management for adoption.</td><td class="num">Medium</td></tr>
+ <tr><td><strong>D. Commercial AI governance platform</strong></td><td>Vendor-supported, feature-rich, may include MLOps</td><td>High licensing cost. Heavy integration work. Over-scoped for what we need now. Slower time to value.</td><td class="num">High</td></tr>
  </tbody>
  </table>
- <p><strong>Why C wins:</strong> it delivers exactly what the enterprise needs today
- (intake, scoring, visualization, governance) on a stack Hach already runs, without
- the cost, integration burden, or feature bloat of a commercial platform. The vanilla
- JavaScript approach keeps the codebase simple and avoids framework churn, while
- Azure Static Web Apps and Cosmos DB keep hosting and data costs minimal.</p>
+ <p><strong>Why C wins:</strong> it covers intake, scoring, the Prioritization
+ Matrix, and governance on a stack Hach already runs (Azure). A commercial
+ platform would cost more and do more than we need right now. A spreadsheet
+ cannot score automatically or show an interactive matrix. The vanilla JS
+ approach keeps the codebase simple and the hosting costs low.</p>
 
  <!-- 7. BENEFITS -->
  <h2><span class="num">6</span>Benefits</h2>
@@ -341,16 +335,16 @@
  <h3>Qualitative / strategic</h3>
  <div class="two">
  <div><ul>
- <li>Single source of truth for the enterprise AI portfolio</li>
- <li>Transparent, auditable prioritization decisions</li>
- <li>Reduced risk of duplicated AI investments</li>
- <li>Earlier visibility into security and compliance gaps</li>
+ <li>One place to see every AI initiative and its score</li>
+ <li>Prioritization decisions are visible and auditable</li>
+ <li>Duplicate initiatives get caught before money is spent</li>
+ <li>Security and compliance gaps surface at intake, not late in the project</li>
  </ul></div>
  <div><ul>
- <li>Empowered Domain Squads with clear intake path</li>
- <li>Executive-ready portfolio visualization</li>
- <li>Scalable governance as AI adoption grows</li>
- <li>Faster time-to-decision on high-value initiatives</li>
+ <li>Domain Squads get a clear path to propose and track their work</li>
+ <li>Leadership gets a portfolio view without chasing updates</li>
+ <li>The governance model scales as AI adoption grows</li>
+ <li>Committees spend less time collecting information and more time deciding</li>
  </ul></div>
  </div>
 
@@ -454,25 +448,25 @@
  </svg>
  </div>
  </div>
- <p class="muted"><strong>What moves the result most:</strong> the adoption rate
- (how quickly Domain Squads use the portal for all new initiatives), the actual
- build cost, and the size of the AI portfolio spend that gets reallocated through
- better prioritization. The base and optimistic cases are comfortably positive.
- The conservative case assumes higher build cost combined with lower adoption and
- a smaller attributed benefit, which pushes NPV slightly negative, so confirming
- actual build cost and adoption commitment is the first priority.</p>
+ <p class="muted"><strong>What moves the result most:</strong> how quickly
+ Domain Squads actually use the portal (adoption), what the build really costs,
+ and how much portfolio spend gets redirected through better prioritization.
+ Base and optimistic both stay positive. The conservative case goes slightly
+ negative because it pairs a higher build cost with lower adoption. Nailing
+ down the actual build cost and getting squad commitment early are the two
+ things that matter most.</p>
 
  <!-- 9. RISKS -->
  <h2><span class="num">8</span>Risks &amp; Mitigations</h2>
  <table>
  <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
  <tbody>
- <tr><td>Low adoption by business units / Domain Squads</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-high">High</span></td><td>Highly visual, intuitive UI (interactive Prioritization Matrix); federated model empowers squads rather than imposing top-down mandates; executive sponsorship of the intake process</td></tr>
- <tr><td>Data collisions or stale browser state</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Self-healing coordinate logic and schema versioning in the app layer (evaluator.js) automatically patches and resolves conflicts</td></tr>
- <tr><td>Security exposure via the portal</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-high">High</span></td><td>Azure Entra ID SSO with role-based access; no sensitive data stored beyond initiative metadata; Static Web App security defaults</td></tr>
- <tr><td>Scope creep from Domain Squad feature requests</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Clear in-scope/out-of-scope boundaries; modular codebase supports phased enhancements without destabilizing the core</td></tr>
- <tr><td>Azure service costs exceed forecast</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-low">Low</span></td><td>Static Web Apps and Cosmos DB consumption tier are inherently low-cost; usage monitoring with Azure Cost Management alerts</td></tr>
- <tr><td>Scoring rubric not accepted by all stakeholders</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Co-develop rubric with cross-functional representatives during Discovery phase; allow configurable weight adjustments</td></tr>
+ <tr><td>Low adoption by business units / Domain Squads</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-high">High</span></td><td>Visual, intuitive UI (the interactive Prioritization Matrix). The federated model gives squads ownership rather than imposing top-down mandates. Executive sponsorship of the intake process.</td></tr>
+ <tr><td>Data collisions or stale browser state</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-med">Medium</span></td><td>Self-healing coordinate logic and schema versioning in the app layer automatically patch and resolve conflicts.</td></tr>
+ <tr><td>Security exposure via the portal</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-high">High</span></td><td>Azure Entra ID SSO with role-based access. Only initiative metadata is stored, no sensitive data. Static Web App security defaults apply.</td></tr>
+ <tr><td>Scope creep from Domain Squad feature requests</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Clear in-scope/out-of-scope boundaries up front. The modular codebase supports phased additions without breaking the core.</td></tr>
+ <tr><td>Azure service costs exceed forecast</td><td><span class="badge b-low">Low</span></td><td><span class="badge b-low">Low</span></td><td>Static Web Apps and Cosmos DB consumption tier are low-cost by design. Azure Cost Management alerts catch overruns early.</td></tr>
+ <tr><td>Scoring rubric not accepted by all stakeholders</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-med">Medium</span></td><td>Co-develop the rubric with cross-functional representatives during Discovery. Allow configurable weight adjustments.</td></tr>
  </tbody>
  </table>
 
@@ -494,19 +488,19 @@
  <!-- 11. RESOURCE & ORG -->
  <h2><span class="num">10</span>Resource &amp; Organizational Impact</h2>
  <ul>
- <li><strong>People:</strong> 1-2 developers (vanilla JS / Azure); architecture
- sponsor for design decisions; Domain Squad champions for pilot and feedback;
- security/compliance reviewer for Entra ID and data model sign-off.</li>
- <li><strong>Process change:</strong> AI initiative proposals shift from ad-hoc
- emails and slide decks to a structured portal submission. Steering committees
- review pre-scored, ranked portfolios instead of raw pitches. Domain Squads gain
- a self-service pipeline view.</li>
- <li><strong>Change management:</strong> onboarding sessions for each Domain Squad;
- executive communications positioning the portal as an enabler (not a gate);
- quick-reference guides and in-app help.</li>
- <li><strong>Skills:</strong> minimal new technical skills for end users. Squad
- leads need a short walkthrough on submission and scoring interpretation. Hub
- admins need training on rubric configuration and portfolio management.</li>
+ <li><strong>People:</strong> 1-2 developers (vanilla JS / Azure), an architecture
+ sponsor, Domain Squad champions for the pilot, and a security/compliance
+ reviewer for Entra ID and the data model.</li>
+ <li><strong>Process change:</strong> proposals move from ad-hoc emails and slide
+ decks to a portal submission. Steering committees see pre-scored, ranked
+ portfolios instead of raw pitches. Domain Squads get a self-service pipeline
+ view.</li>
+ <li><strong>Change management:</strong> onboarding sessions for each Domain Squad.
+ Executive communications that position the portal as an enabler, not a gate.
+ Quick-reference guides and in-app help.</li>
+ <li><strong>Skills:</strong> minimal for end users. Squad leads need a short
+ walkthrough on submission and scoring. Hub admins need training on rubric
+ configuration and portfolio management.</li>
  </ul>
 
  <!-- 12. DEPENDENCIES -->
@@ -538,14 +532,13 @@
 
  <!-- 14. RECOMMENDATION -->
  <h2><span class="num">13</span>Recommendation &amp; Next Steps</h2>
- <p><strong>Recommendation:</strong> Approve Option C and build the FinAI-Strat
- portal. It gives the enterprise what it currently lacks: a transparent, standardized
- way to intake, score, and prioritize AI initiatives with portfolio-level visibility.
- The lightweight Azure architecture keeps costs low, the federated Domain Squad model
- drives adoption from the business side, and the modular codebase supports phased
- enhancement without rearchitecting. The financial return is positive in the base
- case, and the strategic value of governing AI investment coherently is worth at
- least as much as the measured dollar savings.</p>
+ <p><strong>Recommendation:</strong> Go with Option C and build FinAI-Strat.
+ It gives leadership one screen to see every AI initiative, how it scores, and
+ where it sits on the value-vs-feasibility map. Domain Squads get a clear intake
+ path and their own pipeline view. The Azure architecture keeps costs low, and the
+ modular codebase means we can add features later without rebuilding. The base-case
+ financials are positive, and the real payoff is knowing which AI bets to make
+ and which to skip.</p>
  <ol>
  <li>Confirm the financial inputs and replace the estimates (build quote, analyst
  rates, actual cycle-time data, portfolio spend figure, discount rate).</li>
@@ -568,12 +561,12 @@
  <li>A 30% cycle-time reduction is achievable with self-serve intake and
  automated scoring.</li>
  <li>15% of current portfolio spend goes to low-value or redundant work that
- better prioritization would redirect; 10% of that saving is directly
+ better prioritization would redirect. 10% of that saving is directly
  attributable to the portal.</li>
- <li>One-time implementation cost is approximately $85,000; recurring is
+ <li>One-time implementation cost is approximately $85,000. Recurring is
  approximately $15,000/year.</li>
  <li>Year 1 realizes 60% of steady-state benefits due to adoption ramp.</li>
- <li>5-year analysis horizon; 10% discount/hurdle rate.</li>
+ <li>5-year analysis horizon. 10% discount/hurdle rate.</li>
  <li>Hach already has (or will provision) an Azure subscription with Static Web
  Apps and Cosmos DB access.</li>
  <li>Azure Entra ID licensing covers SSO for the portal without incremental
